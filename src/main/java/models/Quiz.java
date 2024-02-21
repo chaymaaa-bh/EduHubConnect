@@ -2,13 +2,13 @@ package models;
 
 public class Quiz {
 
-    private int quiz_id, quiz_duration;
-    private String quiz_title, quiz_description, quiz_subject;
+    private int quiz_id;
+    private String quiz_title, quiz_duration, quiz_description, quiz_subject;
 
     public Quiz() {
     }
 
-    public Quiz(int quiz_id, int quiz_duration, String quiz_title, String quiz_description, String quiz_subject) {
+    public Quiz(int quiz_id, String quiz_title, String quiz_duration, String quiz_subject, String quiz_description) {
         this.quiz_id = quiz_id;
         this.quiz_duration = quiz_duration;
         this.quiz_title = quiz_title;
@@ -16,7 +16,7 @@ public class Quiz {
         this.quiz_subject = quiz_subject;
     }
 
-    public Quiz(int quiz_duration, String quiz_title, String quiz_description, String quiz_subject) {
+    public Quiz(String quiz_title, String quiz_duration, String quiz_subject, String quiz_description) {
         this.quiz_duration = quiz_duration;
         this.quiz_title = quiz_title;
         this.quiz_description = quiz_description;
@@ -31,11 +31,11 @@ public class Quiz {
         this.quiz_id = quiz_id;
     }
 
-    public int getQuiz_duration() {
+    public String getQuiz_duration() {
         return quiz_duration;
     }
 
-    public void setQuiz_duration(int quiz_duration) {
+    public void setQuiz_duration(String quiz_duration) {
         this.quiz_duration = quiz_duration;
     }
 

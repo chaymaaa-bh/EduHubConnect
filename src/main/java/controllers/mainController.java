@@ -1,48 +1,34 @@
 package controllers;
 
 
-import javafx.fxml.Initializable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
-
-import java.util.Date;
-import java.util.Optional;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
-
-
-
+import models.Quiz;
 
 import java.net.URL;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
-import models.Quiz;
-import utils.MyDatabase;
-import java.sql.PreparedStatement;
 
 
-public class mainController implements Initializable {
+
+
+
+
+ public class mainController implements Initializable {
 
 
     @FXML
@@ -146,7 +132,7 @@ public class mainController implements Initializable {
     private TextField quiz_search;
 
     @FXML
-    private TableView<?> quiz_tableView;
+    private TableView<Quiz> quiz_tableView;
 
     @FXML
     private Button quiz_updateBtn;
@@ -167,7 +153,7 @@ public class mainController implements Initializable {
     private TextArea tf_quiz_description;
 
     @FXML
-    private Spinner<?> tf_quiz_duration;
+    private TextField tf_quiz_duration;
 
     @FXML
     private TextField tf_quiz_id;
@@ -177,53 +163,219 @@ public class mainController implements Initializable {
 
     @FXML
     private Label username;
+    private PreparedStatement prepare;
+     private Connection connect;
+     private Statement statement;
+     private ResultSet result;
+
+     private String[] subjectList = new String[]{"JAVA", "Financial Analysis", "Mathematics", "English"};
+     private ObservableList<Quiz> quizList;
 
 
+     public void quizUpdate() {
+         String sql = "UPDATE quizzes SET quiz_title = '" + this.tf_quiz_title.getText() + "', quiz_duration = '" + this.tf_quiz_duration.getText() + "', quiz_subject = '" + this.comboBox_quiz_subject.getSelectionModel().getSelectedItem() + "' WHERE quiz_id ='" + this.tf_quiz_id.getText() + "'";
+         this.connect = utils.MyDatabase.connectDb();
 
-    public void quizAdd() {
-        Date date = new Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        String sql = "INSERT INTO Quizzes (quiz_id, quiz_title, quiz_duration, quiz_subject, quiz_description) VALUES (?, ?, ?, ?, ?)";
-        this.connect = utils.MyDatabase.connectDb();
+         try {
+             Alert alert;
+             if (!this.tf_quiz_id.getText().isEmpty() && !this.tf_quiz_title.getText().isEmpty() && !this.tf_quiz_duration.getText().isEmpty() && this.comboBox_quiz_subject.getSelectionModel().getSelectedItem() != null && !this.tf_quiz_description.getText().isEmpty()) {
+                 alert = new Alert(AlertType.CONFIRMATION);
+                 alert.setTitle("Cofirmation Message");
+                 alert.setHeaderText((String)null);
+                 alert.setContentText("Are you sure you want to UPDATE Quiz ID: " + this.tf_quiz_id.getText() + "?");
+                 Optional<ButtonType> option = alert.showAndWait();
+                 if (((ButtonType)option.get()).equals(ButtonType.OK)) {
+                     this.statement = this.connect.createStatement();
+                     this.statement.executeUpdate(sql);
 
-        try {
-            Alert alert;
-            if (!this.tf_quiz_id.getText().isEmpty() && !this.tf_quiz_duration.getText().isEmpty() && !this.addQuiz_title.getText().isEmpty() && !this.addQuiz_description.getText().isEmpty() && this.addQuiz_subject.getSelectionModel().getSelectedItem() != null) {
-                String check = "SELECT quiz_id FROM Quiz WHERE quiz_id = '" + this.addQuiz_quizID.getText() + "'";
-                this.statement = this.connect.createStatement();
-                this.result = this.statement.executeQuery(check);
-                if (this.result.next()) {
-                    alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Quiz ID: " + this.addQuiz_quizID.getText() + " already exists!");
-                    alert.showAndWait();
-                } else {
-                    this.prepare = this.connect.prepareStatement(sql);
-                    this.prepare.setString(1, this.addQuiz_quizID.getText());
-                    this.prepare.setInt(2, Integer.parseInt(this.addQuiz_duration.getText()));
-                    this.prepare.setString(3, this.addQuiz_title.getText());
-                    this.prepare.setString(4, this.addQuiz_description.getText());
-                    this.prepare.setString(5, (String) this.addQuiz_subject.getSelectionModel().getSelectedItem());
-                    this.prepare.executeUpdate();
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Quiz successfully added!");
-                    alert.showAndWait();
-                    // Update UI or perform any other necessary actions
-                }
-            } else {
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
-                alert.showAndWait();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+                     alert = new Alert(AlertType.INFORMATION);
+                     alert.setTitle("Information Message");
+                     alert.setHeaderText((String)null);
+                     alert.setContentText("Successfully Updated!");
+                     alert.showAndWait();
+                     this.quizShowListData();
+                     this.quizReset();
+                 }
+             } else {
+                 alert = new Alert(AlertType.ERROR);
+                 alert.setTitle("Error Message");
+                 alert.setHeaderText((String)null);
+                 alert.setContentText("Please fill all blank fields");
+                 alert.showAndWait();
+             }
+         } catch (Exception var11) {
+             var11.printStackTrace();
+         }
+
+     }
+
+
+     public void quizDelete() {
+         // Check if the quiz ID field is not empty
+         if (!this.tf_quiz_id.getText().trim().isEmpty()) {
+             String sql = "DELETE FROM quizzes WHERE quiz_id = ?";
+             try {
+                 this.connect = utils.MyDatabase.connectDb();
+                 PreparedStatement ps = this.connect.prepareStatement(sql);
+                 // Set the quiz ID from the text field
+                 ps.setInt(1, Integer.parseInt(this.tf_quiz_id.getText().trim()));
+
+                 // Confirmation dialog
+                 Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                 confirmationAlert.setTitle("Confirmation Dialog");
+                 confirmationAlert.setHeaderText(null);
+                 confirmationAlert.setContentText("Are you sure you want to delete Quiz ID: " + this.tf_quiz_id.getText() + "?");
+
+                 Optional<ButtonType> result = confirmationAlert.showAndWait();
+                 if (result.get() == ButtonType.OK) {
+                     // Execute update
+                     ps.executeUpdate();
+
+                     // Inform the user of success
+                     Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+                     infoAlert.setTitle("Information Dialog");
+                     infoAlert.setHeaderText(null);
+                     infoAlert.setContentText("Successfully Deleted!");
+                     infoAlert.showAndWait();
+
+                     // Reset form and refresh list
+                     this.quizReset();
+                     this.quizShowListData();
+                 }
+             } catch (NumberFormatException nfe) {
+                 // Handle invalid integer input for quiz ID
+                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                 errorAlert.setTitle("Error Dialog");
+                 errorAlert.setHeaderText(null);
+                 errorAlert.setContentText("Invalid Quiz ID. Please enter a numeric value.");
+                 errorAlert.showAndWait();
+             } catch (Exception e) {
+                 // General error handling
+                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                 errorAlert.setTitle("Error Dialog");
+                 errorAlert.setHeaderText(null);
+                 errorAlert.setContentText("An error occurred: " + e.getMessage());
+                 errorAlert.showAndWait();
+                 e.printStackTrace();
+             }
+         } else {
+             // If quiz ID is empty, inform the user
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setTitle("Error Dialog");
+             alert.setHeaderText(null);
+             alert.setContentText("Quiz ID cannot be empty.");
+             alert.showAndWait();
+         }
+     }
+
+     public void quizSubjectList() {
+         List<String> listP = new ArrayList();
+         String[] var2 = this.subjectList;
+         int var3 = var2.length;
+
+         for(int var4 = 0; var4 < var3; ++var4) {
+             String data = var2[var4];
+             listP.add(data);
+         }
+
+         ObservableList listData = FXCollections.observableArrayList(listP);
+         this.comboBox_quiz_subject.setItems(listData);
+     }
+
+     public void quizReset() {
+         this.tf_quiz_id.setText("");
+         this.tf_quiz_title.setText("");
+         this.tf_quiz_duration.setText("");
+         this.comboBox_quiz_subject.getSelectionModel().clearSelection();
+         this.tf_quiz_description.setText("");
+     }
+
+     public void quizAdd() {
+         String sql = "INSERT INTO quizzes (quiz_id, quiz_title, quiz_duration, quiz_subject, quiz_description) VALUES(?,?,?,?,?)";
+         this.connect = utils.MyDatabase.connectDb();
+
+         try {
+             Alert alert;
+             if (!this.tf_quiz_id.getText().isEmpty() && !this.tf_quiz_title.getText().isEmpty() && !this.tf_quiz_duration.getText().isEmpty() && this.comboBox_quiz_subject.getSelectionModel().getSelectedItem() != null && !this.tf_quiz_description.getText().isEmpty()) {
+                 String check = "SELECT quiz_id FROM quizzes WHERE quiz_id = '" + this.tf_quiz_id.getText() + "'";
+                 this.statement = this.connect.createStatement();
+                 this.result = this.statement.executeQuery(check);
+                 if (this.result.next()) {
+                     alert = new Alert(AlertType.ERROR);
+                     alert.setTitle("Error Message");
+                     alert.setHeaderText((String)null);
+                     alert.setContentText("Quiz ID: " + this.tf_quiz_id.getText() + " already exists!");
+                     alert.showAndWait();
+                 } else {
+                     this.prepare = this.connect.prepareStatement(sql);
+                     this.prepare.setString(1, this.tf_quiz_id.getText());
+                     this.prepare.setString(2, this.tf_quiz_title.getText());
+                     this.prepare.setString(3, this.tf_quiz_duration.getText());
+                     this.prepare.setString(4, (String)this.comboBox_quiz_subject.getSelectionModel().getSelectedItem());
+                     this.prepare.setString(5, this.tf_quiz_description.getText());
+                     this.prepare.executeUpdate();
+
+                     alert = new Alert(AlertType.INFORMATION);
+                     alert.setTitle("Information Message");
+                     alert.setHeaderText((String)null);
+                     alert.setContentText("Successfully Added!");
+                     alert.showAndWait();
+                     this.quizShowListData();
+                     this.quizReset();
+                 }
+             } else {
+                 alert = new Alert(AlertType.ERROR);
+                 alert.setTitle("Error Message");
+                 alert.setHeaderText((String)null);
+                 alert.setContentText("Please fill all blank fields");
+                 alert.showAndWait();
+             }
+         } catch (Exception var8) {
+             var8.printStackTrace();
+         }
+
+     }
+
+     public void quizSelect() {
+         Quiz selectedQuiz = this.quiz_tableView.getSelectionModel().getSelectedItem();
+         if (selectedQuiz != null) {
+             this.tf_quiz_id.setText(String.valueOf(selectedQuiz.getQuiz_id()));
+             this.tf_quiz_title.setText(selectedQuiz.getQuiz_title());
+             this.tf_quiz_duration.setText(selectedQuiz.getQuiz_duration());
+             this.tf_quiz_description.setText(selectedQuiz.getQuiz_description());
+         }
+     }
+
+
+     public void quizShowListData() {
+         this.quizList = this.quizListData();
+         this.quiz_col_id.setCellValueFactory(new PropertyValueFactory("quiz_id"));
+         this.quiz_col_title.setCellValueFactory(new PropertyValueFactory("quiz_title"));
+         this.quiz_col_duration.setCellValueFactory(new PropertyValueFactory("quiz_duration"));
+         this.quiz_col_subject.setCellValueFactory(new PropertyValueFactory("quiz_subject"));
+         this.quiz_col_description.setCellValueFactory(new PropertyValueFactory("quiz_description"));
+         this.quiz_tableView.setItems(this.quizList);
+     }
+
+     public ObservableList<Quiz> quizListData() {
+         ObservableList<Quiz> listData = FXCollections.observableArrayList();
+         String sql = "SELECT * FROM quizzes";
+         this.connect = utils.MyDatabase.connectDb();
+
+         try {
+             this.prepare = this.connect.prepareStatement(sql);
+             this.result = this.prepare.executeQuery();
+
+             while(this.result.next()) {
+                 Quiz quiz = new Quiz(this.result.getInt("quiz_id"), this.result.getString("quiz_title"), this.result.getString("quiz_duration"), this.result.getString("quiz_subject"), this.result.getString("quiz_description"));
+                 listData.add(quiz);
+             }
+         } catch (Exception var4) {
+             var4.printStackTrace();
+         }
+
+         return listData;
+     }
 
     public void logout() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -254,40 +406,13 @@ public class mainController implements Initializable {
         stage.setIconified(true);
     }
 
-    @FXML
-    void addEmployeeAdd(ActionEvent event) {
 
-    }
+   /*  @FXML
+     void quizSubjectList(ActionEvent event) {
+   quizSubjectList();
+     }
 
-    @FXML
-    void addEmployeeDelete(ActionEvent event) {
-
-    }
-
-    @FXML
-    void addEmployeeGendernList(ActionEvent event) {
-
-    }
-
-    @FXML
-    void addEmployeeReset(ActionEvent event) {
-
-    }
-
-    @FXML
-    void addEmployeeSearch(KeyEvent event) {
-
-    }
-
-    @FXML
-    void addEmployeeSelect(MouseEvent event) {
-
-    }
-
-    @FXML
-    void addEmployeeUpdate(ActionEvent event) {
-
-    }
+    */
 
     @FXML
     void close(ActionEvent event) {
@@ -313,7 +438,7 @@ minimize();
 
     @FXML
     void quizSelect(MouseEvent event) {
-
+   quizSelect();
     }
 
     @FXML
@@ -339,6 +464,7 @@ minimize();
            // this.addEmployeeGendernList();
          //   this.manageQuizPositionList();
            // this.addEmployeeSearch();
+            this.quizSubjectList();
         } else if (event.getSource() == this.manageQuestion_btn) {
             this.home_form.setVisible(false);
             this.manageQuiz_form.setVisible(false);
@@ -360,6 +486,72 @@ minimize();
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize other UI elements and data
         // ...
+        quizSubjectList();
+        quizListData();
+        quizShowListData();
+
+
 
     }
-}
+
+
+
+
+     @FXML
+     void addEmployeeAdd(ActionEvent event) {
+
+     }
+
+     @FXML
+     void addEmployeeDelete(ActionEvent event) {
+
+     }
+
+     @FXML
+     void addEmployeeGendernList(ActionEvent event) {
+
+     }
+
+     @FXML
+     void addEmployeeReset(ActionEvent event) {
+
+     }
+
+     @FXML
+     void addEmployeeSearch(KeyEvent event) {
+
+     }
+
+     @FXML
+     void addEmployeeSelect(MouseEvent event) {
+
+     }
+
+     @FXML
+     void addEmployeeUpdate(ActionEvent event) {
+
+     }
+     @FXML
+     void quizAdd(ActionEvent event) {
+ quizAdd();
+     }
+
+     @FXML
+     void quizDelete(ActionEvent event) {
+quizDelete();
+     }
+
+     @FXML
+     void quizReset(ActionEvent event) {
+quizReset();
+     }
+
+
+
+
+
+     @FXML
+     void quizUpdate(ActionEvent event) {
+quizUpdate();
+     }
+ }

@@ -22,7 +22,7 @@ public class QuizService implements IService<Quiz> {
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, quiz.getQuiz_title());
         ps.setString(2, quiz.getQuiz_description());
-        ps.setInt(3, quiz.getQuiz_duration());
+        ps.setString(3, quiz.getQuiz_duration());
         ps.setString(4, quiz.getQuiz_subject());
         ps.executeUpdate();
     }
@@ -33,7 +33,7 @@ public class QuizService implements IService<Quiz> {
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, quiz.getQuiz_title());
         ps.setString(2, quiz.getQuiz_description());
-        ps.setInt(3, quiz.getQuiz_duration());
+        ps.setString(3, quiz.getQuiz_duration());
         ps.setString(4, quiz.getQuiz_subject());
         ps.setInt(5, quiz.getQuiz_id());
         ps.executeUpdate();
@@ -58,7 +58,7 @@ public class QuizService implements IService<Quiz> {
             q.setQuiz_id(rs.getInt("quiz_id"));
             q.setQuiz_title(rs.getString("quiz_title"));
             q.setQuiz_description(rs.getString("quiz_description"));
-            q.setQuiz_duration(rs.getInt("quiz_duration"));
+            q.setQuiz_duration(rs.getString("quiz_duration"));
             q.setQuiz_subject(rs.getString("quiz_subject"));
             quizzes.add(q);
         }
