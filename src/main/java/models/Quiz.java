@@ -2,7 +2,7 @@ package models;
 
 public class Quiz {
 
-    private int quiz_id;
+    private Integer quiz_id;
     private String quiz_title, quiz_duration, quiz_description, quiz_subject;
 
     public Quiz() {
@@ -23,7 +23,7 @@ public class Quiz {
         this.quiz_subject = quiz_subject;
     }
 
-    public int getQuiz_id() {
+    public Integer getQuiz_id() {
         return quiz_id;
     }
 

@@ -176,7 +176,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="manageQuiz_form" layoutX="35.0" layoutY="78.0" prefHeight="555.0" prefWidth="889.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="manageQuiz_form" layoutX="35.0" layoutY="78.0" prefHeight="555.0" prefWidth="889.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="15.0" layoutY="14.0" prefHeight="528.0" prefWidth="859.0" stylesheets="dashboardDesign.css">
                                  <children>
@@ -241,7 +241,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="manageQuestion_form" layoutX="10.0" layoutY="10.0" prefHeight="555.0" prefWidth="889.0">
+                        <AnchorPane fx:id="manageQuestion_form" layoutX="10.0" layoutY="10.0" prefHeight="555.0" prefWidth="889.0" visible="false">
                            <children>
                               <AnchorPane layoutX="15.0" layoutY="14.0" prefHeight="528.0" prefWidth="859.0" stylesheets="@dashboardDesign.css">
                                  <children>
@@ -292,19 +292,19 @@
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="question_addBtn" layoutX="701.0" layoutY="469.0" mnemonicParsing="false" onAction="#questionAdd" prefHeight="41.0" prefWidth="94.0" styleClass="add-btn" stylesheets="dashboardDesign.css" text="Add" />
-                                    <Button fx:id="question_updateBtn" layoutX="588.0" layoutY="469.0" mnemonicParsing="false" onAction="#questionUpdate" prefHeight="41.0" prefWidth="94.0" styleClass="update-btn" stylesheets="dashboardDesign.css" text="Update" />
-                                    <Button fx:id="question_deleteBtn" layoutX="433.0" layoutY="469.0" mnemonicParsing="false" onAction="#questionDelete" prefHeight="41.0" prefWidth="94.0" styleClass="delete-btn" stylesheets="dashboardDesign.css" text="Delete" />
-                                    <Button fx:id="question_clearBtn" layoutX="320.0" layoutY="469.0" mnemonicParsing="false" onAction="#questionReset" prefHeight="41.0" prefWidth="94.0" styleClass="clear-btn" stylesheets="dashboardDesign.css" text="Clear" />
+                                    <Button fx:id="quiz_addBtn1" layoutX="701.0" layoutY="469.0" mnemonicParsing="false" onAction="#addEmployeeAdd" prefHeight="41.0" prefWidth="94.0" styleClass="add-btn" stylesheets="dashboardDesign.css" text="Add" />
+                                    <Button fx:id="quiz_updateBtn1" layoutX="588.0" layoutY="469.0" mnemonicParsing="false" onAction="#addEmployeeUpdate" prefHeight="41.0" prefWidth="94.0" styleClass="update-btn" stylesheets="dashboardDesign.css" text="Update" />
+                                    <Button fx:id="quiz_deleteBtn1" layoutX="433.0" layoutY="469.0" mnemonicParsing="false" onAction="#addEmployeeDelete" prefHeight="41.0" prefWidth="94.0" styleClass="delete-btn" stylesheets="dashboardDesign.css" text="Delete" />
+                                    <Button fx:id="quiz_clearBtn1" layoutX="320.0" layoutY="469.0" mnemonicParsing="false" onAction="#addEmployeeReset" prefHeight="41.0" prefWidth="94.0" styleClass="clear-btn" stylesheets="dashboardDesign.css" text="Clear" />
                                     <ComboBox fx:id="comboBox_question_quiz_id" layoutX="114.0" layoutY="369.0" onAction="#addEmployeeGendernList" prefHeight="25.0" prefWidth="179.0" promptText="Choose" styleClass="textfield" stylesheets="dashboardDesign.css" />
-                                    <TextArea fx:id="tf_question_text" layoutX="113.0" layoutY="415.0" prefHeight="37.0" prefWidth="179.0" />
-                                    <TextArea fx:id="tf_question_options" layoutX="524.0" layoutY="334.0" prefHeight="42.0" prefWidth="177.0" />
+                                    <TextArea fx:id="textArea_question_text" layoutX="113.0" layoutY="415.0" prefHeight="37.0" prefWidth="179.0" />
+                                    <TextArea fx:id="textArea_question_options" layoutX="524.0" layoutY="334.0" prefHeight="42.0" prefWidth="177.0" />
                                     <Label layoutX="410.0" layoutY="397.0" prefHeight="34.0" prefWidth="114.0" text="Correct answers:">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextArea fx:id="tf_question_correct_answers" layoutX="524.0" layoutY="402.0" prefHeight="42.0" prefWidth="177.0" />
+                                    <TextArea fx:id="textArea_question_options1" layoutX="524.0" layoutY="402.0" prefHeight="42.0" prefWidth="177.0" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="white-bg" />

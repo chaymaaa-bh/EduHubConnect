@@ -3,6 +3,8 @@ package controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -170,10 +172,39 @@ import java.util.ResourceBundle;
 
      private String[] subjectList = new String[]{"JAVA", "Financial Analysis", "Mathematics", "English"};
      private ObservableList<Quiz> quizList;
+     private FilteredList<Quiz> filter;
+
+
+     public void quizSearch() {
+         filter = new FilteredList<>(quizList, e -> true); // Initialize filter here
+         quiz_search.textProperty().addListener((observable, oldValue, newValue) -> {
+             filter.setPredicate(quiz -> {
+                 if (newValue == null || newValue.isEmpty()) {
+                     return true; // Show all items when search field is empty
+                 }
+                 String searchText = newValue.toLowerCase();
+                 // Apply search logic here based on the properties of the Quiz class
+                 return quiz.getQuiz_title().toLowerCase().contains(searchText)
+                         || quiz.getQuiz_duration().toLowerCase().contains(searchText)
+                         || quiz.getQuiz_subject().toLowerCase().contains(searchText)
+                         || quiz.getQuiz_description().toLowerCase().contains(searchText);
+             });
+             // Call method to refresh TableView after applying the filter
+             quizTableViewRefresh();
+         });
+     }
+
+     private void quizTableViewRefresh() {
+         // Apply the filtered list to the TableView
+         SortedList<Quiz> sortedList = new SortedList<>(filter);
+         sortedList.comparatorProperty().bind(quiz_tableView.comparatorProperty());
+         quiz_tableView.setItems(sortedList);
+     }
+
 
 
      public void quizUpdate() {
-         String sql = "UPDATE quizzes SET quiz_title = '" + this.tf_quiz_title.getText() + "', quiz_duration = '" + this.tf_quiz_duration.getText() + "', quiz_subject = '" + this.comboBox_quiz_subject.getSelectionModel().getSelectedItem() + "' WHERE quiz_id ='" + this.tf_quiz_id.getText() + "'";
+         String sql = "UPDATE quizzes SET quiz_title = '" + this.tf_quiz_title.getText() + "', quiz_duration = '" + this.tf_quiz_duration.getText() + "', quiz_subject = '" + this.comboBox_quiz_subject.getSelectionModel().getSelectedItem() +  "', quiz_description = '" + this.tf_quiz_description.getText() + "' WHERE quiz_id ='" + this.tf_quiz_id.getText() + "'";
          this.connect = utils.MyDatabase.connectDb();
 
          try {
@@ -406,6 +437,8 @@ import java.util.ResourceBundle;
         stage.setIconified(true);
     }
 
+    
+
 
    /*  @FXML
      void quizSubjectList(ActionEvent event) {
@@ -433,7 +466,7 @@ minimize();
 
     @FXML
     void quizSearch(KeyEvent event) {
-
+quizSearch();
     }
 
     @FXML
@@ -464,6 +497,7 @@ minimize();
            // this.addEmployeeGendernList();
          //   this.manageQuizPositionList();
            // this.addEmployeeSearch();
+            this.quizSearch();
             this.quizSubjectList();
         } else if (event.getSource() == this.manageQuestion_btn) {
             this.home_form.setVisible(false);
@@ -489,6 +523,8 @@ minimize();
         quizSubjectList();
         quizListData();
         quizShowListData();
+        quizSearch();
+
 
 
 
@@ -555,3 +591,9 @@ quizReset();
 quizUpdate();
      }
  }
+
+
+ // question
+
+
+
