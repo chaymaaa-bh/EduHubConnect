@@ -4,10 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 public class MyDatabase {
 
-    private final String URL = "jdbc:mysql://localhost:3306/3a2";
+    private final String URL = "jdbc:mysql://localhost:3306/eduhub_connect";
     private final String USER = "root";
     private final String PASS = "";
     private Connection connection;
@@ -31,16 +30,5 @@ public class MyDatabase {
 
     public Connection getConnection() {
         return connection;
-    }
-
-    public static Connection connectDb() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/3a2", "root", "");
-            return connect;
-        } catch (Exception var1) {
-            var1.printStackTrace();
-            return null;
-        }
     }
 }

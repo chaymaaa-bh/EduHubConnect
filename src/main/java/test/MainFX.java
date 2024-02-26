@@ -10,14 +10,14 @@ public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // load the fxml file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
         // load fxml code in a sceen
         Parent root= loader.load();
         // put the fxml file in a sceene
         Scene scene = new Scene(root);
         // set a scene in stage
         stage.setScene(scene);
-        stage.setTitle("add user form");
+        stage.setTitle("login");
         stage.show();
     }
 
@@ -25,4 +25,3 @@ public class MainFX extends Application {
         launch(args);
     }
 }
-

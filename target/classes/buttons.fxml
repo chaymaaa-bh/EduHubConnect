@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.ButtonsController"
+      alignment="CENTER"
+      spacing="10">
+
+    <Button fx:id="button1" text="Button 1" onAction="#handleButton1Action"/>
+    <Button text="Button 2" onAction="#handleButton2Action"/>
+    <Button text="Button 3" onAction="#handleButton3Action"/>
+
+</VBox>
