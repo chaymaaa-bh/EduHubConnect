@@ -289,73 +289,74 @@ public class mainController implements Initializable {
 
 
 
-     public void quizUpdate() {
-         String sql = "UPDATE quizzes SET quiz_title = '" + this.tf_quiz_title.getText() + "', quiz_duration = '" + this.tf_quiz_duration.getText() + "', quiz_subject = '" + this.comboBox_quiz_subject.getSelectionModel().getSelectedItem() +  "', quiz_description = '" + this.tf_quiz_description.getText() + "' WHERE quiz_id ='" + this.tf_quiz_id.getText() + "'";
-         this.connect = utils.MyDatabase.connectDb();
+    public void quizUpdate() {
+        String quizId = this.tf_quiz_id.getText();
+        String quizTitle = this.tf_quiz_title.getText();
+        String quizDuration = this.tf_quiz_duration.getText();
 
-         try {
-             Alert alert;
-             if (!this.tf_quiz_id.getText().isEmpty() && !this.tf_quiz_title.getText().isEmpty() && !this.tf_quiz_duration.getText().isEmpty() && this.comboBox_quiz_subject.getSelectionModel().getSelectedItem() != null && !this.tf_quiz_description.getText().isEmpty()) {
-                 alert = new Alert(AlertType.CONFIRMATION);
-                 alert.setTitle("Cofirmation Message");
-                 alert.setHeaderText((String)null);
-                 alert.setContentText("Are you sure you want to UPDATE Quiz ID: " + this.tf_quiz_id.getText() + "?");
-                 Optional<ButtonType> option = alert.showAndWait();
-                 if (((ButtonType)option.get()).equals(ButtonType.OK)) {
-                     this.statement = this.connect.createStatement();
-                     this.statement.executeUpdate(sql);
+        // Validate input fields
+        if (quizId.isEmpty() || quizTitle.isEmpty() || quizDuration.isEmpty() ||
+                this.comboBox_quiz_subject.getSelectionModel().getSelectedItem() == null ||
+                this.tf_quiz_description.getText().isEmpty()) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill all blank fields");
+            alert.showAndWait();
+            return;
+        }
 
-                     alert = new Alert(AlertType.INFORMATION);
-                     alert.setTitle("Information Message");
-                     alert.setHeaderText((String)null);
-                     alert.setContentText("Successfully Updated!");
-                     alert.showAndWait();
-                     this.quizShowListData();
-                     this.quizReset();
-                 }
-             } else {
-                 alert = new Alert(AlertType.ERROR);
-                 alert.setTitle("Error Message");
-                 alert.setHeaderText((String)null);
-                 alert.setContentText("Please fill all blank fields");
-                 alert.showAndWait();
-             }
-         } catch (Exception var11) {
-             var11.printStackTrace();
-         }
+        // Validate quiz title format (only letters and numbers, start with a letter)
+        if (!quizTitle.matches("^[a-zA-Z][a-zA-Z0-9]*$")) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Quiz Title must only include letters and numbers, and start with a letter");
+            alert.showAndWait();
+            return;
+        }
 
-     }
+        // Validate quiz duration format (only numbers between 10 and 120)
+        int duration;
+        try {
+            duration = Integer.parseInt(quizDuration);
+            if (duration < 10 || duration > 120) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Quiz Duration must be a number between 10 and 120");
+            alert.showAndWait();
+            return;
+        }
 
-    public void questionUpdate() {
-        String sql = "UPDATE questions SET question_text = '" + this.tf_question_text.getText() + "', question_difficulty_level = '" + this.comboBox_question_difficulty.getSelectionModel().getSelectedItem() + "', question_option1 = '" + this.tf_question_option1.getText() +  "', question_option2 = '" + this.tf_question_option2.getText() + "', question_option3 = '" + this.tf_question_option3.getText() + "', question_correct_answer = '" + this.tf_question_correct_answer.getText() + "' WHERE question_id ='" + this.tf_question_id.getText() + "'";
+        String sql = "UPDATE quizzes SET quiz_title = ?, quiz_duration = ?, quiz_subject = ?, quiz_description = ? WHERE quiz_id = ?";
         this.connect = utils.MyDatabase.connectDb();
 
         try {
-            Alert alert;
-            if (!this.tf_question_id.getText().isEmpty() && !this.tf_question_text.getText().isEmpty() && this.comboBox_question_difficulty.getSelectionModel().getSelectedItem() != null && !this.tf_question_option1.getText().isEmpty() && !this.tf_question_option2.getText().isEmpty() && !this.tf_question_option3.getText().isEmpty() && !this.tf_question_correct_answer.getText().isEmpty()) {
-                alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to UPDATE Question ID: " + this.tf_question_id.getText() + "?");
-                Optional<ButtonType> option = alert.showAndWait();
-                if (option.isPresent() && option.get() == ButtonType.OK) {
-                    this.statement = this.connect.createStatement();
-                    this.statement.executeUpdate(sql);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to UPDATE Quiz ID: " + quizId + "?");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.isPresent() && option.get() == ButtonType.OK) {
+                this.prepare = this.connect.prepareStatement(sql);
+                this.prepare.setString(1, quizTitle);
+                this.prepare.setString(2, quizDuration);
+                this.prepare.setString(3, (String) this.comboBox_quiz_subject.getSelectionModel().getSelectedItem());
+                this.prepare.setString(4, this.tf_quiz_description.getText());
+                this.prepare.setString(5, quizId);
+                this.prepare.executeUpdate();
 
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Updated!");
-                    alert.showAndWait();
-                    this.questionShowListData();
-                    this.questionReset();
-                }
-            } else {
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
-                alert.showAndWait();
+                Alert successAlert = new Alert(AlertType.INFORMATION);
+                successAlert.setTitle("Information Message");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Successfully Updated!");
+                successAlert.showAndWait();
+                this.quizShowListData();
+                this.quizReset();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -363,7 +364,81 @@ public class mainController implements Initializable {
     }
 
 
-     public void quizDelete() {
+    public void questionUpdate() {
+        String questionId = this.tf_question_id.getText();
+        String questionText = this.tf_question_text.getText();
+        String correctAnswer = this.tf_question_correct_answer.getText();
+        String option1 = this.tf_question_option1.getText();
+        String option2 = this.tf_question_option2.getText();
+        String option3 = this.tf_question_option3.getText();
+
+        // Validate input fields
+        if (questionId.isEmpty() || questionText.isEmpty() || this.comboBox_question_difficulty.getSelectionModel().getSelectedItem() == null ||
+                option1.isEmpty() || option2.isEmpty() || option3.isEmpty() || correctAnswer.isEmpty()) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill all blank fields");
+            alert.showAndWait();
+            return;
+        }
+
+        // Validate question text format (only letters, numbers, ",", and ends with "?" or ":")
+        if (!questionText.matches("^[a-zA-Z0-9,]+[?|:]$")) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Question text must only include letters, numbers, ',' and end with '?' or ':'");
+            alert.showAndWait();
+            return;
+        }
+
+        // Validate correct answer (must match one of the options)
+        if (!correctAnswer.equals(option1) && !correctAnswer.equals(option2) && !correctAnswer.equals(option3)) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Correct answer must be equal to option 1, option 2, or option 3");
+            alert.showAndWait();
+            return;
+        }
+
+        String sql = "UPDATE questions SET question_text = ?, question_difficulty_level = ?, question_option1 = ?, question_option2 = ?, question_option3 = ?, question_correct_answer = ? WHERE question_id = ?";
+        this.connect = utils.MyDatabase.connectDb();
+
+        try {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to UPDATE Question ID: " + questionId + "?");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.isPresent() && option.get() == ButtonType.OK) {
+                this.prepare = this.connect.prepareStatement(sql);
+                this.prepare.setString(1, questionText);
+                this.prepare.setString(2, this.comboBox_question_difficulty.getSelectionModel().getSelectedItem());
+                this.prepare.setString(3, option1);
+                this.prepare.setString(4, option2);
+                this.prepare.setString(5, option3);
+                this.prepare.setString(6, correctAnswer);
+                this.prepare.setString(7, questionId);
+                this.prepare.executeUpdate();
+
+                Alert successAlert = new Alert(AlertType.INFORMATION);
+                successAlert.setTitle("Information Message");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Successfully Updated!");
+                successAlert.showAndWait();
+                this.questionShowListData();
+                this.questionReset();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void quizDelete() {
          // Check if the quiz ID field is not empty
          if (!this.tf_quiz_id.getText().trim().isEmpty()) {
              String sql = "DELETE FROM quizzes WHERE quiz_id = ?";
@@ -528,99 +603,186 @@ public class mainController implements Initializable {
 
 
     public void quizAdd() {
-         String sql = "INSERT INTO quizzes (quiz_id, quiz_title, quiz_duration, quiz_subject, quiz_description) VALUES(?,?,?,?,?)";
-         this.connect = utils.MyDatabase.connectDb();
-
-         try {
-             Alert alert;
-             if (!this.tf_quiz_id.getText().isEmpty() && !this.tf_quiz_title.getText().isEmpty() && !this.tf_quiz_duration.getText().isEmpty() && this.comboBox_quiz_subject.getSelectionModel().getSelectedItem() != null && !this.tf_quiz_description.getText().isEmpty()) {
-                 String check = "SELECT quiz_id FROM quizzes WHERE quiz_id = '" + this.tf_quiz_id.getText() + "'";
-                 this.statement = this.connect.createStatement();
-                 this.result = this.statement.executeQuery(check);
-                 if (this.result.next()) {
-                     alert = new Alert(AlertType.ERROR);
-                     alert.setTitle("Error Message");
-                     alert.setHeaderText((String)null);
-                     alert.setContentText("Quiz ID: " + this.tf_quiz_id.getText() + " already exists!");
-                     alert.showAndWait();
-                 } else {
-                     this.prepare = this.connect.prepareStatement(sql);
-                     this.prepare.setString(1, this.tf_quiz_id.getText());
-                     this.prepare.setString(2, this.tf_quiz_title.getText());
-                     this.prepare.setString(3, this.tf_quiz_duration.getText());
-                     this.prepare.setString(4, (String)this.comboBox_quiz_subject.getSelectionModel().getSelectedItem());
-                     this.prepare.setString(5, this.tf_quiz_description.getText());
-                     this.prepare.executeUpdate();
-
-                     alert = new Alert(AlertType.INFORMATION);
-                     alert.setTitle("Information Message");
-                     alert.setHeaderText((String)null);
-                     alert.setContentText("Successfully Added!");
-                     alert.showAndWait();
-                     this.quizShowListData();
-                     this.quizReset();
-                 }
-             } else {
-                 alert = new Alert(AlertType.ERROR);
-                 alert.setTitle("Error Message");
-                 alert.setHeaderText((String)null);
-                 alert.setContentText("Please fill all blank fields");
-                 alert.showAndWait();
-             }
-         } catch (Exception var8) {
-             var8.printStackTrace();
-         }
-
-     }
-
-    public void questionAdd() {
-        String sql = "INSERT INTO questions (question_id, question_quiz_id, question_text, question_difficulty_level, question_option1, question_option2, question_option3, question_correct_answer) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO quizzes (quiz_id, quiz_title, quiz_duration, quiz_subject, quiz_description) VALUES(?,?,?,?,?)";
         this.connect = utils.MyDatabase.connectDb();
 
         try {
             Alert alert;
-            if (!this.tf_question_id.getText().isEmpty() && !this.tf_question_text.getText().isEmpty() && this.comboBox_question_difficulty.getValue() != null && !this.tf_question_option1.getText().isEmpty() && !this.tf_question_option2.getText().isEmpty() && !this.tf_question_option3.getText().isEmpty() && !this.tf_question_correct_answer.getText().isEmpty()) {
-                String check = "SELECT question_id FROM questions WHERE question_id = ?";
-                this.prepare = this.connect.prepareStatement(check);
-                this.prepare.setString(1, this.tf_question_id.getText());
-                this.result = this.prepare.executeQuery();
-                if (this.result.next()) {
-                    alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Question ID: " + this.tf_question_id.getText() + " already exists!");
-                    alert.showAndWait();
-                } else {
-                    this.prepare = this.connect.prepareStatement(sql);
-                    this.prepare.setString(1, this.tf_question_id.getText());
-                    this.prepare.setString(2, this.comboBox_question_quiz_id.getValue().toString());
-                    this.prepare.setString(3, this.tf_question_text.getText());
-                    this.prepare.setString(4, this.comboBox_question_difficulty.getValue());
-                    this.prepare.setString(5, this.tf_question_option1.getText());
-                    this.prepare.setString(6, this.tf_question_option2.getText());
-                    this.prepare.setString(7, this.tf_question_option3.getText());
-                    this.prepare.setString(8, this.tf_question_correct_answer.getText());
-                    this.prepare.executeUpdate();
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Added!");
-                    alert.showAndWait();
-                    this.questionShowListData();
-                    this.questionReset();
+            String quizId = this.tf_quiz_id.getText();
+            String quizTitle = this.tf_quiz_title.getText();
+            String quizDuration = this.tf_quiz_duration.getText();
+
+            // Validate quiz id format (only numbers, maximum 4 characters)
+            if (!quizId.matches("\\d{1,4}")) {
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Quiz ID must be numeric and have maximum 4 characters");
+                alert.showAndWait();
+                return;
+            }
+
+            // Validate quiz title format (only letters and numbers, start with a letter)
+            if (!quizTitle.matches("^[a-zA-Z][a-zA-Z0-9]*$")) {
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Quiz Title must only include letters and numbers, and start with a letter");
+                alert.showAndWait();
+                return;
+            }
+
+            // Validate quiz duration format (only numbers between 10 and 120)
+            int duration;
+            try {
+                duration = Integer.parseInt(quizDuration);
+                if (duration < 10 || duration > 120) {
+                    throw new NumberFormatException();
                 }
-            } else {
+            } catch (NumberFormatException e) {
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Quiz Duration must be a number between 10 and 120");
+                alert.showAndWait();
+                return;
+            }
+
+            // Validate other fields
+            if (this.comboBox_quiz_subject.getSelectionModel().getSelectedItem() == null || this.tf_quiz_description.getText().isEmpty()) {
                 alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
+                return;
             }
-        } catch (Exception var8) {
-            var8.printStackTrace();
+
+            // Check if quiz ID already exists
+            String check = "SELECT quiz_id FROM quizzes WHERE quiz_id = ?";
+            this.prepare = this.connect.prepareStatement(check);
+            this.prepare.setString(1, quizId);
+            this.result = this.prepare.executeQuery();
+            if (this.result.next()) {
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Quiz ID: " + quizId + " already exists!");
+                alert.showAndWait();
+                return;
+            }
+
+            // If all validations pass, proceed with inserting the quiz
+            this.prepare = this.connect.prepareStatement(sql);
+            this.prepare.setString(1, quizId);
+            this.prepare.setString(2, quizTitle);
+            this.prepare.setString(3, quizDuration);
+            this.prepare.setString(4, (String) this.comboBox_quiz_subject.getSelectionModel().getSelectedItem());
+            this.prepare.setString(5, this.tf_quiz_description.getText());
+            this.prepare.executeUpdate();
+
+            alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Successfully Added!");
+            alert.showAndWait();
+            this.quizShowListData();
+            this.quizReset();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+    public void questionAdd() {
+        String questionId = this.tf_question_id.getText();
+        String questionText = this.tf_question_text.getText();
+        String correctAnswer = this.tf_question_correct_answer.getText();
+        String option1 = this.tf_question_option1.getText();
+        String option2 = this.tf_question_option2.getText();
+        String option3 = this.tf_question_option3.getText();
+
+        // Validate input fields
+        if (questionId.isEmpty() || questionText.isEmpty() || this.comboBox_question_difficulty.getValue() == null ||
+                option1.isEmpty() || option2.isEmpty() || option3.isEmpty() || correctAnswer.isEmpty()) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill all blank fields");
+            alert.showAndWait();
+            return;
+        }
+
+        // Validate question ID format (only numbers, maximum 4 digits)
+        if (!questionId.matches("\\d{1,4}")) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Question ID must be a number with maximum 4 digits");
+            alert.showAndWait();
+            return;
+        }
+
+        // Validate question text format (only letters, numbers, ",", and ends with "?" or ":")
+        if (!questionText.matches("^[a-zA-Z0-9,]+[?|:]$")) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Question text must only include letters, numbers, ',' and end with '?' or ':'");
+            alert.showAndWait();
+            return;
+        }
+
+        // Validate correct answer (must match one of the options)
+        if (!correctAnswer.equals(option1) && !correctAnswer.equals(option2) && !correctAnswer.equals(option3)) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Correct answer must be equal to option 1, option 2, or option 3");
+            alert.showAndWait();
+            return;
+        }
+
+        String sql = "INSERT INTO questions (question_id, question_quiz_id, question_text, question_difficulty_level, question_option1, question_option2, question_option3, question_correct_answer) VALUES(?,?,?,?,?,?,?,?)";
+        this.connect = utils.MyDatabase.connectDb();
+
+        try {
+            String check = "SELECT question_id FROM questions WHERE question_id = ?";
+            this.prepare = this.connect.prepareStatement(check);
+            this.prepare.setString(1, questionId);
+            this.result = this.prepare.executeQuery();
+            if (this.result.next()) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Question ID: " + questionId + " already exists!");
+                alert.showAndWait();
+                return;
+            }
+
+            this.prepare = this.connect.prepareStatement(sql);
+            this.prepare.setString(1, questionId);
+            this.prepare.setString(2, this.comboBox_question_quiz_id.getValue().toString());
+            this.prepare.setString(3, questionText);
+            this.prepare.setString(4, this.comboBox_question_difficulty.getValue());
+            this.prepare.setString(5, option1);
+            this.prepare.setString(6, option2);
+            this.prepare.setString(7, option3);
+            this.prepare.setString(8, correctAnswer);
+            this.prepare.executeUpdate();
+
+            Alert successAlert = new Alert(AlertType.INFORMATION);
+            successAlert.setTitle("Information Message");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Successfully Added!");
+            successAlert.showAndWait();
+            this.questionShowListData();
+            this.questionReset();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void quizSelect() {
