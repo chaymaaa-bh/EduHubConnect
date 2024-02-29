@@ -10,7 +10,11 @@ public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // load the fxml file
+<<<<<<< HEAD
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/home_quiz.fxml"));
+=======
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
+>>>>>>> origin/chayma
         // load fxml code in a sceen
         Parent root= loader.load();
         // put the fxml file in a sceene
@@ -24,4 +28,9 @@ public class MainFX extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> origin/chayma

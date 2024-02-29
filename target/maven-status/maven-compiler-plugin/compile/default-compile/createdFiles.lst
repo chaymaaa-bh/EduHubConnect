@@ -1,3 +1,12 @@
+<<<<<<< HEAD
 controllers/quizHomeController.class
 controllers/quizController.class
 controllers/quizResultController.class
+=======
+services\IService.class
+models\Question.class
+utils\MyDatabase.class
+models\Quiz.class
+controllers\mainController.class
+test\MainFX.class
+>>>>>>> origin/chayma

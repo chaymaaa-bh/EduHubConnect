@@ -73,6 +73,9 @@ public class Quiz {
                 ", quiz_subject='" + quiz_subject + '\'' +
                 '}';
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/chayma
 }
