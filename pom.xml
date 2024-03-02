@@ -53,6 +53,12 @@
             <version>1.6.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.connectbot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
 
 
 

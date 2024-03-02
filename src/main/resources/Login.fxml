@@ -29,6 +29,7 @@
 
                             </graphic>
                         </Button>
+                  <Button fx:id="forgetpassword" layoutX="134.0" layoutY="318.0" mnemonicParsing="false" onAction="#forgetpassword" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../../../../../Downloads/vendredi%202/src/main/resources/loginDesign.css" text="forgetpassword" />
                     </children>
                 </AnchorPane>
             </children>

@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.io.IOException;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginController {
 
@@ -55,7 +57,7 @@ public class LoginController {
 
         try {
             User user = userService.getUserByEmail(email);
-            if (user != null && user.getPassword().equals(password)) {
+            if (user != null && BCrypt.checkpw(password, user.getPassword())) {
                 if (user.getRole().equals("admin")) {
                     // If user is admin, navigate to dashboard.fxml
                     System.out.println("Admin login successful");
@@ -136,6 +138,13 @@ public class LoginController {
         }
 
 
-
-
+    public void forgetpassword(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/forgetpassword.fxml"));
+            emailField.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }
+

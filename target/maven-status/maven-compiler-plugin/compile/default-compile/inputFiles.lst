@@ -2,7 +2,9 @@
 /Users/macbook/Desktop/EduHubConnect/src/main/java/test/MainFX.java
 /Users/macbook/Desktop/EduHubConnect/src/main/java/models/Module.java
 /Users/macbook/Desktop/EduHubConnect/src/main/java/controllers/AddUserController.java
+/Users/macbook/Desktop/EduHubConnect/src/main/java/controllers/UpdatePasswordController.java
 /Users/macbook/Desktop/EduHubConnect/src/main/java/controllers/quizResultController.java
+/Users/macbook/Desktop/EduHubConnect/src/main/java/controllers/CodeController.java
 /Users/macbook/Desktop/EduHubConnect/src/main/java/controllers/EmailSender.java
 /Users/macbook/Desktop/EduHubConnect/src/main/java/controllers/LoginController.java
 /Users/macbook/Desktop/EduHubConnect/src/main/java/services/ModuleService.java
@@ -17,5 +19,6 @@
 /Users/macbook/Desktop/EduHubConnect/src/main/java/services/UserService.java
 /Users/macbook/Desktop/EduHubConnect/src/main/java/utils/MyDatabase.java
 /Users/macbook/Desktop/EduHubConnect/src/main/java/models/Quiz.java
+/Users/macbook/Desktop/EduHubConnect/src/main/java/controllers/forgetpasswordController.java
 /Users/macbook/Desktop/EduHubConnect/src/main/java/controllers/studentController.java
 /Users/macbook/Desktop/EduHubConnect/src/main/java/services/IService.java

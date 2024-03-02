@@ -10,8 +10,12 @@ controllers/quizResultController$1.class
 controllers/GlobalVariables.class
 models/Result.class
 controllers/EmailSender.class
+controllers/forgetpasswordController.class
 models/Module.class
+controllers/forgetpasswordController$1.class
 controllers/ExcelExporter.class
 controllers/quizResultController.class
 services/UserService.class
 controllers/RegisterUserController.class
+controllers/CodeController.class
+controllers/UpdatePasswordController.class
