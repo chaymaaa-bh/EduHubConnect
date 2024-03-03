@@ -3,6 +3,8 @@ services/ModuleService.class
 controllers/AddUserController.class
 controllers/studentController.class
 controllers/quizHomeController.class
+services/SessionService.class
+models/Pay.class
 controllers/LoginController.class
 controllers/EmailSender$1.class
 controllers/quizController.class
@@ -16,6 +18,11 @@ controllers/forgetpasswordController$1.class
 controllers/ExcelExporter.class
 controllers/quizResultController.class
 services/UserService.class
+services/PaymentService.class
 controllers/RegisterUserController.class
+models/Session.class
 controllers/CodeController.class
+services/SubjectService.class
+models/Payment.class
+models/Subject.class
 controllers/UpdatePasswordController.class

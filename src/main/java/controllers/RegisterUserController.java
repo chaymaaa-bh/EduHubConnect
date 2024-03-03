@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class RegisterUserController {
     @FXML
@@ -114,7 +115,8 @@ public class RegisterUserController {
 
 
         // Creating User
-        User user = new User(moduleName, firstName, lastName, email, password, gender, "scholar", bio, phoneNumber, profilePicture, dateOfBirth);
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        User user = new User(moduleName, firstName, lastName, email, hashedPassword, gender, "scholar", bio, phoneNumber, profilePicture, dateOfBirth);
 
         // Persisting User
         try {

@@ -256,6 +256,7 @@ public class studentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        username.setText(GlobalVariables.userName);
 
         resultListData();
         resultShowListData();

@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="756.0" prefWidth="1176.0" stylesheets="@dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <children>
-        <AnchorPane fx:id="main_form" prefHeight="500.0" prefWidth="400.0">
+        <AnchorPane fx:id="main_form" prefHeight="1097.0" prefWidth="863.0">
             <children>
-                <AnchorPane prefHeight="404.0" prefWidth="324.0" styleClass="left-form" stylesheets="@loginDesign.css" />
-                <AnchorPane layoutX="322.0" prefHeight="402.0" prefWidth="735.0" styleClass="right-form" stylesheets="@loginDesign.css">
+                <AnchorPane prefHeight="755.0" prefWidth="324.0" styleClass="left-form" stylesheets="@loginDesign.css" />
+                <AnchorPane layoutX="322.0" prefHeight="757.0" prefWidth="854.0" styleClass="right-form" stylesheets="@loginDesign.css">
                     <children>
                         <Label layoutX="114.0" layoutY="91.0" text="Welcome back!" textFill="#368981">
                             <font>

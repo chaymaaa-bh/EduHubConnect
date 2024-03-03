@@ -1,9 +1,11 @@
 package controllers;
-
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 import javafx.scene.Parent;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -12,10 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import models.User;
 import services.UserService;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+
 import java.io.IOException;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -57,54 +56,55 @@ public class LoginController {
 
         try {
             User user = userService.getUserByEmail(email);
-            if (user != null && BCrypt.checkpw(password, user.getPassword())) {
-                if (user.getRole().equals("admin")) {
-                    // If user is admin, navigate to dashboard.fxml
-                    System.out.println("Admin login successful");
-                    showAlert("Login Successful", "Welcome, Admin " + user.getFirst_name() + "!");
-                    GlobalVariables.userId = user.getUser_id();
-                    GlobalVariables.userName = user.getFirst_name();
-                    GlobalVariables.userEmail = user.getEmail();
-                    System.out.println(GlobalVariables.userEmail);
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
-                        Parent root = loader.load();
-                        mainController mainController = loader.getController();
-
-
-                        emailField.getScene().setRoot(root);
-                    } catch (IOException e) {
-                        System.out.println("Error: " + e.getMessage());
+            if (user != null) {
+                // Hash the entered password
+                String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+                // Compare the hashed password with the stored hash
+                if (BCrypt.checkpw(password, user.getPassword())) {
+                    if (user.getRole().equals("admin")) {
+                        // If user is admin, navigate to dashboard.fxml
+                        System.out.println("Admin login successful");
+                        showAlert("Login Successful", "Welcome, Admin " + user.getFirst_name() + " " + user.getUser_id() + "!");
+                        GlobalVariables.userId = user.getUser_id();
+                        GlobalVariables.userName = user.getFirst_name();
+                        GlobalVariables.userEmail = user.getEmail();
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
+                            emailField.getScene().setRoot(root);
+                        } catch (IOException e) {
+                            System.out.println("Error: " + e.getMessage());
+                        }
+                    }  if (user.getRole().equals("scholar")) {
+                        // If user is admin, navigate to dashboard.fxml
+                        showAlert("Login Successful", "Welcome,  " + user.getFirst_name() + " " + user.getUser_id() + "!");
+                        GlobalVariables.userId = user.getUser_id();
+                        GlobalVariables.userName = user.getFirst_name();
+                        GlobalVariables.userEmail = user.getEmail();
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("/student.fxml"));
+                            emailField.getScene().setRoot(root);
+                        } catch (IOException e) {
+                            System.out.println("Error: " + e.getMessage());
+                        }
                     }
-                } else if (user.getRole().equals("scholar")) {
-                    // If user is scholar, navigate to student.fxml
-                    showAlert("Login Successful", "Welcome, " + user.getFirst_name() + "!");
-                    GlobalVariables.userId = user.getUser_id();
-                    GlobalVariables.userName = user.getFirst_name();
-                    GlobalVariables.userEmail = user.getEmail();
-
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/student.fxml"));
-                        Parent root = loader.load();
-                        studentController studentController = loader.getController();
-
-
-                        emailField.getScene().setRoot(root);
-                    } catch (IOException e) {
-                        System.out.println("Error: " + e.getMessage());
+                    else {
+                        // For other roles, you can handle differently or restrict access
+                        showAlert("Invalid Role", "You do not have permissions to access the dashboard.");
                     }
                 } else {
-                    showAlert("Invalid Role", "You do not have permissions to access the dashboard.");
+                    // Authentication failed, display error message
+                    showAlert("Invalid Credentials", "The email or password is incorrect.");
                 }
             } else {
-                // Authentication failed, display error message
-                showAlert("Invalid Credentials", "The email or password is incorrect.");
+                // User not found, display error message
+                showAlert("User not found", "No user found with the provided email.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert("Error", "An error occurred during authentication. Please try again later.");
         }
     }
+
 
 
 
@@ -128,14 +128,14 @@ public class LoginController {
     }
     @FXML
 
-        void createAccount(ActionEvent event) {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("/RegisterUser.fxml"));
-                emailField.getScene().setRoot(root);
-            } catch (IOException e) {
-                System.out.println("Error: " + e.getMessage());
-            }
+    void createAccount(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/RegisterUser.fxml"));
+            emailField.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
+    }
 
 
     public void forgetpassword(ActionEvent actionEvent) {
@@ -147,4 +147,3 @@ public class LoginController {
         }
     }
 }
-
