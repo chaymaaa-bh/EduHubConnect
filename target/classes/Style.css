@@ -1,0 +1,18 @@
+/* Style.css */
+
+#AnchorPane {
+    -fx-background-color: #F5F5F5; /* Grey background */
+}
+
+#postcontent {
+    -fx-text-fill: #000000; /* Black text color */
+}
+
+#addPostBtn {
+    -fx-background-color: #FF0000; /* Red background */
+    -fx-text-fill: #FFFFFF; /* White text color */
+}
+
+#addPostBtn:hover {
+    -fx-background-color: #DC143C; /* Dark Red background on hover */
+}

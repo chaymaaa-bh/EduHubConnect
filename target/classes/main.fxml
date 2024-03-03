@@ -28,24 +28,24 @@
                <top>
                   <AnchorPane prefHeight="45.0" prefWidth="200.0" styleClass="semi-top-form" stylesheets="dashboardDesign.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="form_logo" layoutY="1.0" prefHeight="57.0" prefWidth="1103.0" styleClass="top-form" stylesheets="dashboardDesign.css" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                        <AnchorPane fx:id="form_logo" layoutY="1.0" prefHeight="71.0" prefWidth="1108.0" styleClass="top-form" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="1.0">
                            <children>
-                              <Label fx:id="eduhubconnect" layoutX="427.0" layoutY="18.0" prefHeight="18.0" prefWidth="367.0" styleClass="big-bold-textfield" text="EduHub Connect">
+                              <Label fx:id="eduhubconnect" layoutX="350.0" layoutY="17.0" prefHeight="50.0" prefWidth="423.0" styleClass="big-bold-textfield" stylesheets="@dashboardDesign.css" text="EduHub Connect" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="14.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="close" layoutX="1049.0" layoutY="15.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="60.0" styleClass="close" stylesheets="dashboardDesign.css" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0">
+                              <Button fx:id="close" layoutX="1036.0" layoutY="25.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="60.0" styleClass="close" stylesheets="dashboardDesign.css" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="25.0">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="CLOSE" size="1.2em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="minimize" layoutX="979.0" layoutY="15.0" mnemonicParsing="false" onAction="#minimize" prefHeight="24.0" prefWidth="45.0" styleClass="minimize" stylesheets="dashboardDesign.css">
+                              <Button fx:id="minimize" layoutX="980.0" layoutY="25.0" mnemonicParsing="false" onAction="#minimize" prefHeight="24.0" prefWidth="45.0" styleClass="minimize" stylesheets="dashboardDesign.css">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="MINUS" size="1.2em" />
                                  </graphic>
                               </Button>
-                              <ImageView fx:id="logo" fitHeight="64.0" fitWidth="59.0" layoutX="7.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="logo" fitHeight="63.0" fitWidth="60.0" layoutX="6.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@logo.jpg" />
                                  </image>
@@ -58,7 +58,7 @@
                <left>
                   <AnchorPane prefHeight="555.0" prefWidth="211.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="5.0" prefHeight="547.0" prefWidth="211.0" styleClass="nav-form" stylesheets="dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                        <AnchorPane layoutX="6.0" layoutY="-1.0" prefHeight="550.0" prefWidth="205.0" styleClass="nav-form" stylesheets="@dashboardDesign.css" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
                            <children>
                               <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="73.0" layoutY="105.0" size="7em" />
                               <Label layoutX="69.0" layoutY="117.0" text="Welcome," textFill="WHITE">
@@ -72,22 +72,22 @@
                                  </font>
                               </Label>
                               <Line endX="69.0" layoutX="121.0" layoutY="178.0" startX="-100.0" stroke="WHITE" />
-                              <Button fx:id="home_btn" layoutX="16.0" layoutY="198.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Home">
+                              <Button fx:id="home_btn" layoutX="7.0" layoutY="212.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Home">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" text="" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="manageQuiz_btn" layoutX="16.0" layoutY="367.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Quizzes">
+                              <Button fx:id="manageQuiz_btn" layoutX="7.0" layoutY="381.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Quizzes">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="BOOK" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="manageQuestion_btn" layoutX="16.0" layoutY="421.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Questions">
+                              <Button fx:id="manageQuestion_btn" layoutX="7.0" layoutY="435.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Questions">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="QUESTION" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="logout" layoutX="14.0" layoutY="498.0" mnemonicParsing="false" onAction="#logout" stylesheets="dashboardDesign.css">
+                              <Button fx:id="logout" layoutX="17.0" layoutY="491.0" mnemonicParsing="false" onAction="#logout" stylesheets="dashboardDesign.css">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" />
                                  </graphic>
@@ -96,12 +96,12 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </Button>
-                              <Button fx:id="modules_btn" layoutX="16.0" layoutY="309.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Modules">
+                              <Button fx:id="modules_btn" layoutX="7.0" layoutY="323.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Modules">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="BOOK" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="users_btn" layoutX="16.0" layoutY="254.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Users">
+                              <Button fx:id="users_btn" layoutX="7.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Users">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="USERS" size="1.5em" text="" />
                                  </graphic>
@@ -112,9 +112,9 @@
                   </AnchorPane>
                </left>
                <center>
-                  <AnchorPane fx:id="back_pane" prefHeight="200.0" prefWidth="200.0" stylesheets="dashboardDesign.css" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="back_pane" prefHeight="0.0" prefWidth="857.0" styleClass="edu-form" stylesheets="@dashboardDesign.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="home_form" layoutX="63.0" layoutY="87.0" prefHeight="555.0" prefWidth="889.0" stylesheets="dashboardDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="home_form" layoutX="63.0" layoutY="87.0" prefHeight="555.0" prefWidth="889.0" styleClass="edu-form" stylesheets="dashboardDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="13.0" layoutY="17.0" prefHeight="521.0" prefWidth="863.0" stylesheets="dashboardDesign.css">
                                  <styleClass>
@@ -122,11 +122,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <AnchorPane prefHeight="155.0" prefWidth="863.0" stylesheets="dashboardDesign.css">
-                                       <styleClass>
-                                          <String fx:value="white-bg" />
-                                          <String fx:value="shadow" />
-                                       </styleClass>
+                                    <AnchorPane prefHeight="382.0" prefWidth="863.0" styleClass="back-trans" stylesheets="@dashboardDesign.css">
                                        <children>
                                           <AnchorPane fx:id="home_totalQuiz" layoutX="14.0" layoutY="10.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="dashboardDesign.css">
                                              <children>
@@ -187,15 +183,11 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="manageQuiz_form" layoutX="35.0" layoutY="78.0" prefHeight="555.0" prefWidth="889.0" stylesheets="dashboardDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="manageQuiz_form" cacheShape="false" layoutY="-1.0" prefHeight="562.0" prefWidth="901.0" styleClass="edu-form" stylesheets="dashboardDesign.css" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="-2.0">
                            <children>
-                              <AnchorPane fx:id="manageQuiz_back" layoutX="15.0" layoutY="14.0" prefHeight="528.0" prefWidth="859.0">
+                              <AnchorPane fx:id="manageQuiz_back" layoutX="15.0" layoutY="14.0" prefHeight="528.0" prefWidth="859.0" styleClass="shadow">
                                  <children>
-                                    <AnchorPane fx:id="tableview_quiz" prefHeight="303.0" prefWidth="859.0" stylesheets="dashboardDesign.css">
-                                       <styleClass>
-                                          <String fx:value="white-bg" />
-                                          <String fx:value="shadow" />
-                                       </styleClass>
+                                    <AnchorPane fx:id="tableview_quiz" layoutX="-6.0" layoutY="-2.0" prefHeight="349.0" prefWidth="865.0" styleClass="shadow" stylesheets="dashboardDesign.css">
                                        <children>
                                           <TableView fx:id="quiz_tableView" layoutX="10.0" layoutY="62.0" onMouseClicked="#quizSelect" prefHeight="277.0" prefWidth="840.0">
                                             <columns>
@@ -220,24 +212,16 @@
                                     <TextArea fx:id="tf_quiz_description" layoutX="559.0" layoutY="364.0" prefHeight="70.0" prefWidth="167.0" promptText="Description" />
                                     <TextField fx:id="tf_quiz_duration" layoutX="344.0" layoutY="365.0" prefHeight="25.0" prefWidth="172.0" promptText="Duration" styleClass="textfield" stylesheets="dashboardDesign.css" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="white-bg" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="manageQuestion_form" layoutX="3.0" layoutY="-3.0" prefHeight="555.0" prefWidth="889.0">
+                        <AnchorPane fx:id="manageQuestion_form" layoutX="-1.0" layoutY="-1.0" prefHeight="553.0" prefWidth="898.0" styleClass="edu-form" stylesheets="@dashboardDesign.css" visible="false">
                            <children>
                               <AnchorPane fx:id="back_anchor_question" layoutX="15.0" layoutY="14.0" prefHeight="528.0" prefWidth="859.0" stylesheets="dashboardDesign.css">
                                  <children>
-                                    <AnchorPane fx:id="tab_question_form" prefHeight="303.0" prefWidth="859.0" stylesheets="dashboardDesign.css">
-                                       <styleClass>
-                                          <String fx:value="white-bg" />
-                                          <String fx:value="shadow" />
-                                       </styleClass>
+                                    <AnchorPane fx:id="tab_question_form" prefHeight="303.0" prefWidth="859.0" styleClass="shadow" stylesheets="@dashboardDesign.css">
                                        <children>
-                                          <TableView fx:id="question_tableView" layoutX="10.0" layoutY="62.0" onMouseClicked="#questionSelect" prefHeight="292.0" prefWidth="846.0">
+                                          <TableView fx:id="question_tableView" layoutX="10.0" layoutY="62.0" onMouseClicked="#questionSelect" prefHeight="292.0" prefWidth="846.0" stylesheets="@dashboardDesign.css">
                                              <columns>
                                                 <TableColumn fx:id="question_col_id" prefWidth="83.0" text="Question ID" />
                                                 <TableColumn fx:id="question_col_quiz_id" prefWidth="97.0" text="Quiz ID" />
@@ -249,7 +233,7 @@
                                                 <TableColumn fx:id="question_col_correct_answer" prefWidth="126.0" text="Correct" />
                                              </columns>
                                           </TableView>
-                                          <TextField fx:id="question_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#questionSearch" prefHeight="30.0" prefWidth="277.0" promptText="Seach" styleClass="search" stylesheets="dashboardDesign.css" />
+                                          <TextField fx:id="question_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#questionSearch" prefHeight="30.0" prefWidth="277.0" promptText="Seach" styleClass="search" stylesheets="@dashboardDesign.css" />
                                           <FontAwesomeIcon glyphName="SEARCH" layoutX="21.0" layoutY="35.0" size="1.5em" />
                                        </children>
                                     </AnchorPane>
@@ -273,7 +257,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="user_form" layoutX="13.0" layoutY="7.0" prefHeight="555.0" prefWidth="889.0" visible="false">
+                        <AnchorPane fx:id="user_form" layoutY="-1.0" prefHeight="563.0" prefWidth="902.0" styleClass="edu-form" stylesheets="@dashboardDesign.css" visible="false">
                            <children>
                               <AnchorPane fx:id="user_from_back" layoutX="15.0" layoutY="14.0" prefHeight="528.0" prefWidth="859.0" stylesheets="dashboardDesign.css">
                                  <children>
@@ -311,31 +295,23 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="modules_form" layoutX="23.0" layoutY="17.0" prefHeight="555.0" prefWidth="889.0" visible="false">
+                        <AnchorPane fx:id="modules_form" layoutX="-1.0" layoutY="-1.0" prefHeight="545.0" prefWidth="897.0" styleClass="edu-form" stylesheets="@dashboardDesign.css" visible="false">
                            <children>
-                              <AnchorPane fx:id="module_from_back" layoutX="15.0" layoutY="14.0" prefHeight="528.0" prefWidth="859.0" stylesheets="dashboardDesign.css">
+                              <AnchorPane fx:id="module_from_back" layoutX="12.0" layoutY="38.0" prefHeight="515.0" prefWidth="865.0" styleClass="shadow" stylesheets="@dashboardDesign.css">
                                  <children>
-                                    <AnchorPane prefHeight="303.0" prefWidth="859.0" stylesheets="dashboardDesign.css">
-                                       <styleClass>
-                                          <String fx:value="white-bg" />
-                                          <String fx:value="shadow" />
-                                       </styleClass>
+                                    <AnchorPane layoutX="5.0" prefHeight="444.0" prefWidth="870.0" styleClass="shadow" stylesheets="dashboardDesign.css">
                                        <children>
-                                          <TableView fx:id="tableView" layoutX="10.0" layoutY="4.0" onMouseClicked="#questionSelect" prefHeight="453.0" prefWidth="846.0">
+                                          <TableView fx:id="tableView" layoutX="12.0" layoutY="14.0" onMouseClicked="#questionSelect" prefHeight="430.0" prefWidth="839.0" stylesheets="@dashboardDesign.css">
                                              <columns>
                                                 <TableColumn fx:id="columnModuleNamem" prefWidth="845.0" text="Module name" />
                                              </columns>
                                           </TableView>
                                        </children>
                                     </AnchorPane>
-                                    <Button fx:id="question_addBtn11" layoutX="279.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleAddButtonActionm" prefHeight="41.0" prefWidth="94.0" styleClass="add-btn" stylesheets="dashboardDesign.css" text="Add" />
-                                    <Button fx:id="question_updateBtn11" layoutX="401.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleUpdateButtonActionm" prefHeight="41.0" prefWidth="94.0" styleClass="update-btn" stylesheets="dashboardDesign.css" text="Update" />
-                                    <Button fx:id="question_deleteBtn11" layoutX="532.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleDeleteButtonActionm" prefHeight="41.0" prefWidth="94.0" styleClass="delete-btn" stylesheets="dashboardDesign.css" text="Delete" />
+                                    <Button fx:id="question_addBtn11" layoutX="300.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleAddButtonActionm" prefHeight="41.0" prefWidth="94.0" styleClass="add-btn" stylesheets="dashboardDesign.css" text="Add" />
+                                    <Button fx:id="question_updateBtn11" layoutX="422.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleUpdateButtonActionm" prefHeight="41.0" prefWidth="94.0" styleClass="update-btn" stylesheets="dashboardDesign.css" text="Update" />
+                                    <Button fx:id="question_deleteBtn11" layoutX="545.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleDeleteButtonActionm" prefHeight="41.0" prefWidth="94.0" styleClass="delete-btn" stylesheets="dashboardDesign.css" text="Delete" />
                                  </children>
-                                 <styleClass>
-                                    <String fx:value="white-bg" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
                               </AnchorPane>
                            </children>
                         </AnchorPane>

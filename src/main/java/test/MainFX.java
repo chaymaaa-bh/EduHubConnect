@@ -47,7 +47,7 @@ public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // load the fxml file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
         // load fxml code in a sceen
         Parent root= loader.load();
         // put the fxml file in a sceene

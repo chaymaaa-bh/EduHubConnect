@@ -92,6 +92,9 @@ public class studentController implements Initializable {
     private Button quiz_history_btn;
 
     @FXML
+    private Button forum_btn;
+
+    @FXML
     private AnchorPane quiz_history_form;
 
     @FXML
@@ -145,7 +148,7 @@ public class studentController implements Initializable {
                 // Your logic to handle the result object here
 
 
-               listData.add(result);
+                listData.add(result);
             }
         } catch (Exception var4) {
             var4.printStackTrace();
@@ -191,6 +194,11 @@ public class studentController implements Initializable {
             this.home_form.setVisible(true);
             this.quiz_history_form.setVisible(false);
 
+
+        } else if (event.getSource() == this.forum_btn) {
+            switchScene(event, "/showpost.fxml");
+
+
         }
     }
     private void switchScene(ActionEvent actionEvent, String resource) {
@@ -219,22 +227,22 @@ public class studentController implements Initializable {
 
     @FXML
 
-        void logout(ActionEvent actionEvent) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
-                Parent root = loader.load();
+    void logout(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+            Parent root = loader.load();
 
-                // Access the source node of the event
-                Node source = (Node) actionEvent.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                Scene scene = new Scene(root);
+            // Access the source node of the event
+            Node source = (Node) actionEvent.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            Scene scene = new Scene(root);
 
-                stage.setScene(scene);
-            } catch (IOException e) {
-                System.out.println("Error: " + e.getMessage());
-            }
-
+            stage.setScene(scene);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
+
+    }
 
 
 
