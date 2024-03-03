@@ -101,6 +101,15 @@ public class studentController implements Initializable {
     private Button take_quiz_btn;
 
     @FXML
+    private Button courses_btn;
+
+    @FXML
+    private Button purchased_courses_btn;
+
+    @FXML
+    private Button create_course_btn;
+
+    @FXML
     private Button export_excel_btn;
 
     @FXML
@@ -197,6 +206,18 @@ public class studentController implements Initializable {
 
         } else if (event.getSource() == this.forum_btn) {
             switchScene(event, "/showpost.fxml");
+
+
+        } else if (event.getSource() == this.courses_btn) {
+            switchScene(event, "/ViewCourses.fxml");
+
+
+        } else if (event.getSource() == this.purchased_courses_btn) {
+            switchScene(event, "/MyCourses.fxml");
+
+
+        } else if (event.getSource() == this.create_course_btn) {
+            switchScene(event, "/ShowSubject.fxml");
 
 
         }

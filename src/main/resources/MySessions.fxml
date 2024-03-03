@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="sessionsVBox" xmlns:fx="http://javafx.com/fxml" spacing="10" stylesheets="styles.css" fx:controller="controllers.MySessionsController">
+</VBox>
+

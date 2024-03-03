@@ -1,0 +1,89 @@
+#coursesVBox {
+    -fx-alignment: center;
+    -fx-background-color: lightgray;
+    -fx-padding: 10px;
+    -fx-spacing: 5px; /* Adjust the spacing between cards */
+    -fx-min-height: 200px; /* Set the minimum height */
+    -fx-max-height: 300px; /* Set the maximum height */
+}
+
+#sessionsVBox {
+    -fx-alignment: center;
+    -fx-background-color: lightgray;
+    -fx-padding: 10px;
+    -fx-spacing: 5px; /* Adjust the spacing between cards */
+    -fx-min-height: 200px; /* Set the minimum height */
+    -fx-max-height: 300px; /* Set the maximum height */
+}
+
+.course-card {
+    -fx-background-color: white;
+    -fx-transition: background-color 0.3s; /* Add a transition effect */
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-min-width: 370px; /* Set the minimum width */
+    -fx-max-width: 400px; /* Set the maximum width */
+    -fx-min-height: 50px; /* Set the minimum height */
+    -fx-max-height: 100px; /* Set the maximum height */
+}
+
+.course-box {
+    -fx-background-color: white;
+    -fx-transition: background-color 0.3s; /* Add a transition effect */
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-min-width: 370px; /* Set the minimum width */
+    -fx-max-width: 400px; /* Set the maximum width */
+    -fx-min-height: 50px; /* Set the minimum height */
+    -fx-max-height: 100px; /* Set the maximum height */
+}
+
+.session-card {
+    -fx-background-color: white;
+    -fx-transition: background-color 0.3s; /* Add a transition effect */
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-min-width: 370px; /* Set the minimum width */
+    -fx-max-width: 400px; /* Set the maximum width */
+    -fx-min-height: 50px; /* Set the minimum height */
+    -fx-max-height: 100px; /* Set the maximum height */
+}
+
+.course-card:hover {
+    -fx-background-color: lightgrey; /* Change the background color on hover */
+}
+
+.course-box:hover {
+    -fx-background-color: lightgrey; /* Change the background color on hover */
+}
+
+.session-card:hover {
+    -fx-background-color: lightgrey; /* Change the background color on hover */
+}
+
+
+.content-container {
+    -fx-padding: 5px;
+}
+
+.name-label {
+    -fx-font-weight: bold; /* Make the name label bold */
+    -fx-font-size: 24px;  /* Set the font size for the name label */
+}
+
+.title-price-box {
+    -fx-spacing: 5px;
+}
+
+.button-container {
+    -fx-spacing: 10px; /* Adjust spacing between components */
+    -fx-padding: 10px;
+}
+
+
