@@ -11,13 +11,13 @@
 
     <AnchorPane fx:id="main_form" prefHeight="400.0" prefWidth="600.0">
         <children>
-            <Label layoutX="215.0" layoutY="135.0" text="Enter Code:" textFill="#368981">
+            <Label layoutX="215.0" layoutY="135.0" text="Enter Code:" textFill="#bf5151">
                 <font>
                     <Font name="Tahoma Bold" size="17.0" />
                 </font>
             </Label>
             <TextField fx:id="codeTextField" layoutX="215.0" layoutY="175.0" prefHeight="30.0" prefWidth="220.0" promptText="Enter Code" styleClass="textfield" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="175.0" />
-            <Button fx:id="submitCodeBtn" layoutX="255.0" layoutY="220.0" mnemonicParsing="false" onAction="#submitCode" prefHeight="40.0" prefWidth="140.0" styleClass="login-btn" text="Submit" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="220.0" />
+            <Button fx:id="submitCodeBtn" layoutX="255.0" layoutY="220.0" mnemonicParsing="false" onAction="#submitCode" prefHeight="40.0" prefWidth="140.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Submit" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="220.0" />
             <Button layoutX="440.0" layoutY="287.0" mnemonicParsing="false" onAction="#getback" prefHeight="23.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="get back" />
 
         </children>
