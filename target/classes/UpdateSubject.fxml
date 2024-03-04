@@ -5,14 +5,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" stylesheets="dashboardDesign.css" fx:controller="controllers.UpdateSubjectController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateSubjectController">
     <children>
-        <Button fx:id="upButtoncourse" layoutX="253.0" layoutY="247.0" mnemonicParsing="false" onAction="#updateSubject" text="Update Course" />
+        <Button fx:id="upButtoncourse" layoutX="250.0" layoutY="246.0" mnemonicParsing="false" onAction="#updateSubject" text="Update Course" />
         <Label layoutX="157.0" layoutY="75.0" text="Name" />
         <TextField fx:id="upnmcourse" layoutX="226.0" layoutY="71.0" promptText="Enter new course's name" />
         <Label layoutX="143.0" layoutY="130.0" text="Description" />
         <TextField fx:id="updescourse" layoutX="226.0" layoutY="126.0" promptText="Enter new description" />
         <TextField fx:id="upprcourse" layoutX="226.0" layoutY="175.0" promptText="Enter new price" />
         <Label layoutX="160.0" layoutY="179.0" text="Price" />
+        <Button fx:id="getback" layoutX="251.0" layoutY="316.0" mnemonicParsing="false" onAction="#getback" prefHeight="25.0" prefWidth="99.0" styleClass="add-btn" text="Get Back" />
     </children>
 </AnchorPane>

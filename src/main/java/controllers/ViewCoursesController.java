@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -395,6 +396,22 @@ public class ViewCoursesController implements Initializable {
         alert.setTitle("Information");
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void getback(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/student.fxml"));
+            Parent root = loader.load();
+
+            // Access the source node of the event
+            Node source = (Node) actionEvent.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     private void updateUI() {

@@ -2,9 +2,6 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.lang.String?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -69,17 +66,12 @@
                                  </font>
                               </Label>
                               <Line endX="69.0" layoutX="121.0" layoutY="165.0" startX="-100.0" stroke="WHITE" />
-                              <Button fx:id="home_btn" layoutX="19.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Home">
-                                 <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="take_quiz_btn" layoutX="19.0" layoutY="209.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Take a Quiz">
+                              <Button fx:id="take_quiz_btn" layoutX="17.0" layoutY="182.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Take a Quiz">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="BOOK" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="logout" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#logout" prefHeight="0.0" prefWidth="36.0" stylesheets="dashboardDesign.css">
+                              <Button fx:id="logout" layoutX="21.0" layoutY="509.0" mnemonicParsing="false" onAction="#logout" prefHeight="0.0" prefWidth="36.0" stylesheets="dashboardDesign.css">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" />
                                  </graphic>
@@ -88,44 +80,39 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </Button>
-                              <Button fx:id="quiz_history_btn" layoutX="19.0" layoutY="244.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Quizzes history">
+                              <Button fx:id="quiz_history_btn" layoutX="17.0" layoutY="217.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Quizzes history">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
+                                    <FontAwesomeIcon fill="WHITE" glyphName="LIST" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="courses_btn" layoutX="19.0" layoutY="279.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Courses">
+                              <Button fx:id="courses_btn" layoutX="17.0" layoutY="252.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Courses">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
+                                    <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="reports_btn" layoutX="19.0" layoutY="454.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Reports">
+                              <Button fx:id="reports_btn" layoutX="17.0" layoutY="427.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Reports">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
+                                    <FontAwesomeIcon fill="WHITE" glyphName="EXCLAMATION" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="forum_btn" layoutX="19.0" layoutY="384.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Forum">
+                              <Button fx:id="forum_btn" layoutX="17.0" layoutY="357.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Forum">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" text="" />
+                                    <FontAwesomeIcon fill="WHITE" glyphName="COMMENTS" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="purchased_courses_btn" layoutX="19.0" layoutY="314.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Purchased courses">
+                              <Button fx:id="purchased_courses_btn" layoutX="17.0" layoutY="287.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Purchased courses">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
+                                    <FontAwesomeIcon fill="WHITE" glyphName="STAR" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="ratings_btn" layoutX="19.0" layoutY="419.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Ratings">
+                              <Button fx:id="ratings_btn" layoutX="17.0" layoutY="392.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Ratings">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
+                                    <FontAwesomeIcon fill="WHITE" glyphName="EDIT" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="leaderboard_btn" layoutX="19.0" layoutY="489.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Leader board">
+                              <Button fx:id="create_course_btn" layoutX="14.0" layoutY="322.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Create course">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="create_course_btn" layoutX="16.0" layoutY="349.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Create course">
-                                 <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
+                                    <FontAwesomeIcon fill="WHITE" glyphName="CALENDAR" size="1.5em" />
                                  </graphic>
                               </Button>
                            </children>
@@ -136,79 +123,6 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@dashboardDesign.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="home_form" layoutX="63.0" layoutY="-2.0" prefHeight="567.0" prefWidth="899.0" styleClass="edu-form" stylesheets="@dashboardDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
-                           <children>
-                              <AnchorPane layoutX="13.0" layoutY="17.0" prefHeight="521.0" prefWidth="863.0" stylesheets="dashboardDesign.css">
-                                 <styleClass>
-                                    <String fx:value="white-bg" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
-                                 <children>
-                                    <AnchorPane prefHeight="155.0" prefWidth="863.0" stylesheets="dashboardDesign.css">
-                                       <styleClass>
-                                          <String fx:value="white-bg" />
-                                          <String fx:value="shadow" />
-                                       </styleClass>
-                                       <children>
-                                          <AnchorPane fx:id="home_totalQuiz" layoutX="14.0" layoutY="10.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="dashboardDesign.css">
-                                             <children>
-                                                <FontAwesomeIcon fill="WHITE" glyphName="FILE" layoutX="14.0" layoutY="85.0" size="4em" />
-                                                <Label layoutX="77.0" layoutY="92.0" text="Total Quizzes" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Tahoma" size="17.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label fx:id="home_totalEmployees" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="14.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Arial" size="25.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane layoutX="305.0" layoutY="10.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="dashboardDesign.css">
-                                             <children>
-                                                <FontAwesomeIcon fill="WHITE" glyphName="DESKTOP" layoutX="14.0" layoutY="90.0" size="4em" />
-                                                <Label layoutX="77.0" layoutY="97.0" text="Average quiz duration" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Tahoma" size="17.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label fx:id="home_avgDuration" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="19.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Arial" size="25.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane layoutX="595.0" layoutY="10.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="dashboardDesign.css">
-                                             <children>
-                                                <FontAwesomeIcon fill="WHITE" glyphName="EDIT" layoutX="14.0" layoutY="90.0" size="4em" />
-                                                <Label fx:id="home_totalSubjects" layoutX="105.0" layoutY="97.0" text="Total subjects" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Tahoma" size="16.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label fx:id="home_totalInactiveEm" alignment="CENTER_RIGHT" layoutX="90.0" layoutY="19.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Arial" size="25.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </AnchorPane>
-                                    <BarChart fx:id="home_chartQuizSubject" layoutX="87.0" layoutY="204.0" prefHeight="281.0" prefWidth="690.0" title="Quizzes Data Chart">
-                                      <xAxis>
-                                        <CategoryAxis side="BOTTOM" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis side="LEFT" />
-                                      </yAxis>
-                                    </BarChart>
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
                         <AnchorPane fx:id="quiz_history_form" layoutX="-1.0" layoutY="-2.0" prefHeight="567.0" prefWidth="900.0" styleClass="edu-form" stylesheets="@dashboardDesign.css">
                            <children>
                               <AnchorPane fx:id="quiz_history_back" layoutX="15.0" layoutY="14.0" prefHeight="528.0" prefWidth="859.0" stylesheets="@dashboardDesign.css">

@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="dashboardDesign.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateSessionController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateSessionController">
     <children>
         <Button fx:id="upButtonses" layoutX="252.0" layoutY="245.0" mnemonicParsing="false" onAction="#updateSession" text="Update Session" />
         <Label layoutX="157.0" layoutY="75.0" text="Name" />
@@ -14,5 +14,6 @@
         <TextField fx:id="updescSes" layoutX="226.0" layoutY="126.0" promptText="Enter new description" />
       <Label layoutX="162.0" layoutY="183.0" text="Link" />
       <TextField fx:id="newsessionLinkId" layoutX="226.0" layoutY="179.0" promptText="Enter new link" />
+        <Button fx:id="getback" layoutX="256.0" layoutY="306.0" mnemonicParsing="false" onAction="#getback" prefHeight="25.0" prefWidth="99.0" styleClass="add-btn" text="Get Back" />
     </children>
 </AnchorPane>

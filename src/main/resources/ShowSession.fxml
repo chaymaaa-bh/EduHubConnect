@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="dashboardDesign.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ShowSessionController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ShowSessionController">
     <children>
         <TableView fx:id="subtable" layoutX="16.0" layoutY="61.0" prefHeight="241.0" prefWidth="571.0">
             <columns>
@@ -15,6 +15,7 @@
             <TableColumn fx:id="actionsesid" prefWidth="213.0" text="Actions" />
             </columns>
         </TableView>
-        <Button fx:id="addnewsessbutt" layoutX="246.0" layoutY="334.0" mnemonicParsing="false" text="Add New Session" />
+        <Button fx:id="getback" layoutX="370.0" layoutY="334.0" mnemonicParsing="false" onAction="#getback" prefHeight="25.0" prefWidth="99.0" styleClass="add-btn" text="Get Back" />
+        <Button fx:id="addnewsessbutt" layoutX="117.0" layoutY="334.0" mnemonicParsing="false" text="Add New Session" />
     </children>
 </AnchorPane>

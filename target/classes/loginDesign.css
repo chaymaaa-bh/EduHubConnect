@@ -9,13 +9,13 @@ and open the template in the editor.
 */
 
 .left-form{
-    -fx-background-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-background-color: rgba(151, 22, 22, 0.7);
     -fx-border-color:#000;
     -fx-border-width:.4px 0px .4px .4px;
 }
 
 .right-form{
-    -fx-background-color:#fff;
+    -fx-background-color: white;
     -fx-border-color:#000;
     -fx-border-width:.4px .4px .4px 0px;
 }
@@ -29,29 +29,27 @@ and open the template in the editor.
 }
 
 .textfield{
-    -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
-    -fx-background-radius:4px;
-    -fx-border-color:#000;
-    -fx-border-width:.4px;
-    -fx-border-radius:4px;
-    -fx-font-size:13px;
-    -fx-font-family:"Arial";
+    -fx-background-color: #f9f9f9; /* Light grey */
+    -fx-border-color: transparent; /* Transparent border */
+    -fx-border-width: .8px;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-border-radius: 20px; /* Rounded corners */
+    -fx-background-radius: 20px; /* Rounded corners */
     
 }
 .textfield:focused{
-    -fx-background-color:#fff;
-    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
-    -fx-border-width:.8px;
+    -fx-border-width: 1.8px;
+    -fx-background-color: rgba(255, 0, 0, 0.2); /* Light transparent red */
 }
 
 .login-btn{
-    -fx-background-color:linear-gradient(to bottom, #278f96,#2d645f);
-    -fx-background-radius:5px;
-    -fx-text-fill:#fff;
-    -fx-font-size:14px;
-    -fx-font-family:"Arial";
-    -fx-cursor:hand;
+    -fx-background-color: rgba(155, 36, 36, 0.7); /* More transparent Dark Red */
+    -fx-background-radius: 10px; /* Slightly rounded corners */
+    -fx-text-fill: #fff; /* White text */
+    -fx-font-size: 14px;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-cursor: pointer;
 }
 .login-btn:hover{
-    -fx-background-color:linear-gradient(to bottom, #21a7ae,#368981);
+    -fx-background-color: rgba(110, 7, 7, 0.7); /* More transparent Darker Red on hover */
 }

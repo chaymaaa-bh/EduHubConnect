@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="dashboardDesign.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ShowSubjectController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ShowSubjectController">
     <children>
         <TableView fx:id="subtable" layoutX="16.0" layoutY="61.0" prefHeight="241.0" prefWidth="571.0">
             <columns>
@@ -16,6 +16,7 @@
                 <TableColumn fx:id="actionsubid" prefWidth="309.0" text="Actions" />
             </columns>
         </TableView>
-        <Button fx:id="addnewbutt" layoutX="247.0" layoutY="332.0" mnemonicParsing="false" text="Add New Course" />
+        <Button fx:id="getback" layoutX="416.0" layoutY="334.0" mnemonicParsing="false" onAction="#getback" prefHeight="25.0" prefWidth="99.0" styleClass="add-btn" text="Get Back" />
+        <Button fx:id="addnewbutt" layoutX="100.0" layoutY="334.0" mnemonicParsing="false" text="Add New Course" />
     </children>
 </AnchorPane>

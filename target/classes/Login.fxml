@@ -15,21 +15,21 @@
                 <AnchorPane prefHeight="755.0" prefWidth="324.0" styleClass="left-form" stylesheets="@loginDesign.css" />
                 <AnchorPane layoutX="322.0" prefHeight="757.0" prefWidth="854.0" styleClass="right-form" stylesheets="@loginDesign.css">
                     <children>
-                        <Label layoutX="114.0" layoutY="91.0" text="Welcome back!" textFill="#368981">
+                        <Label layoutX="156.0" layoutY="66.0" text="Welcome back!" textFill="#572420">
                             <font>
-                                <Font name="Tahoma Bold" size="17.0" />
+                                <Font name="Arial Bold" size="34.0" />
                             </font>
                         </Label>
                         <TextField fx:id="emailField" layoutX="134.0" layoutY="136.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Email" styleClass="textfield" stylesheets="@loginDesign.css" />
                         <PasswordField fx:id="passwordField" layoutX="134.0" layoutY="177.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="textfield" stylesheets="@loginDesign.css" />
                         <Button fx:id="loginBtn" layoutX="134.0" layoutY="230.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Login" />
-                        <Button fx:id="createAccountBtn" layoutX="134.0" layoutY="272.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Create Account" />
+                        <Button fx:id="createAccountBtn" layoutX="134.0" layoutY="278.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Create Account" />
                         <Button fx:id="close" layoutX="248.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="58.0" styleClass="close" stylesheets="@loginDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                             <graphic>
 
                             </graphic>
                         </Button>
-                  <Button fx:id="forgetpassword" layoutX="134.0" layoutY="318.0" mnemonicParsing="false" onAction="#forgetpassword" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../../../../../Downloads/vendredi%202/src/main/resources/loginDesign.css" text="forgetpassword" />
+                  <Button fx:id="forgetpassword" layoutX="134.0" layoutY="328.0" mnemonicParsing="false" onAction="#forgetpassword" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" text="Forget password" />
                     </children>
                 </AnchorPane>
             </children>

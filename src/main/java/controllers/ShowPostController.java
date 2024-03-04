@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import models.Post;
 import services.PostService;
 import javafx.beans.value.ObservableValue;
@@ -30,6 +31,9 @@ public class ShowPostController {
     private TableColumn<Post, String> contentColumn;
     @FXML
     private ComboBox<String> sortPostsComboBox;
+
+    @FXML
+    private AnchorPane post_form;
 
     @FXML
     private Button filterByCommentsBtn; // Bouton pour filtrer par commentaires
@@ -68,8 +72,6 @@ public class ShowPostController {
             }
         });
     }
-
-
 
 
     public void loadData() {
@@ -240,6 +242,24 @@ public class ShowPostController {
     }
 
     public void openPostAdd(ActionEvent actionEvent) {
+
         switchScene(actionEvent, "/addpost.fxml");
+    }
+
+    @FXML
+    void close(ActionEvent event) {
+        switchScene(event, "/student.fxml");
+    }
+
+    @FXML
+    void minimize(ActionEvent event) {
+        minimize();
+    }
+
+
+
+    public void minimize() {
+        Stage stage = (Stage)this.post_form.getScene().getWindow();
+        stage.setIconified(true);
     }
 }

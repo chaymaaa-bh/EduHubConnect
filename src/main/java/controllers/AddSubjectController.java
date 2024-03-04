@@ -4,14 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import models.Subject;
 import services.SubjectService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -66,11 +72,11 @@ public class AddSubjectController implements Initializable {
 
     void initializeSubtopicComboBox() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/3a2", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/edu", "root", "");
 
             Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("SELECT `module_name` FROM `module`");
+            ResultSet resultSet = statement.executeQuery("SELECT `module_name` FROM `modules`");
 
             ObservableList<String> moduleNames = FXCollections.observableArrayList();
 
@@ -99,7 +105,7 @@ public class AddSubjectController implements Initializable {
 
     private boolean isSubjectNameUnique(String subjectName) {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/3a2", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/edu", "root", "");
 
             Statement statement = connection.createStatement();
 
@@ -133,5 +139,20 @@ public class AddSubjectController implements Initializable {
             }
         }
         return true;
+
+    }    public void getback(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/student.fxml"));
+            Parent root = loader.load();
+
+            // Access the source node of the event
+            Node source = (Node) actionEvent.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }

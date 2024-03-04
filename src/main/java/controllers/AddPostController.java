@@ -1,5 +1,7 @@
 package controllers;
 
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import models.Post;
 import services.BadWordsFilter;
 import services.PostService;
@@ -25,6 +27,9 @@ public class AddPostController {
 
     @FXML
     private TextField contentp;
+
+    @FXML
+    private AnchorPane add_post_form;
 
     private final PostService postService = new PostService();
     private static final Logger logger = Logger.getLogger(AddPostController.class.getName());
@@ -77,5 +82,42 @@ public class AddPostController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+
+
+    @FXML
+    void close(ActionEvent event) {
+        switchScene(event, "/showpost.fxml");
+    }
+
+    @FXML
+    void minimize(ActionEvent event) {
+minimize();
+    }
+
+    private void switchScene(ActionEvent actionEvent, String resource) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+            Parent root = loader.load();
+
+            // Access the source node of the event
+
+            Node source = (Node) actionEvent.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+
+
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+
+    public void minimize() {
+        Stage stage = (Stage)this.add_post_form.getScene().getWindow();
+        stage.setIconified(true);
     }
 }

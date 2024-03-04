@@ -92,6 +92,12 @@ public class studentController implements Initializable {
     private Button quiz_history_btn;
 
     @FXML
+    private Button ratings_btn;
+
+    @FXML
+    private Button reports_btn;
+
+    @FXML
     private Button forum_btn;
 
     @FXML
@@ -220,6 +226,14 @@ public class studentController implements Initializable {
             switchScene(event, "/ShowSubject.fxml");
 
 
+        } else if (event.getSource() == this.ratings_btn) {
+            switchScene(event, "/addRating.fxml");
+
+
+        } else if (event.getSource() == this.reports_btn) {
+            switchScene(event, "/ShowReport.fxml");
+
+
         }
     }
     private void switchScene(ActionEvent actionEvent, String resource) {
@@ -228,11 +242,14 @@ public class studentController implements Initializable {
             Parent root = loader.load();
 
             // Access the source node of the event
+
             Node source = (Node) actionEvent.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             Scene scene = new Scene(root);
+           stage.setScene(scene);
 
-            stage.setScene(scene);
+
+
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }

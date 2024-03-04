@@ -2,11 +2,18 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import models.Session;
 import services.SessionService;
+
+import java.io.IOException;
 
 public class UpdateSessionController {
 
@@ -79,5 +86,21 @@ public class UpdateSessionController {
             }
         }
         return true;
+    }
+
+    public void getback(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateSession.fxml"));
+            Parent root = loader.load();
+
+            // Access the source node of the event
+            Node source = (Node) actionEvent.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }

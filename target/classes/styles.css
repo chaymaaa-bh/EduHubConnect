@@ -1,6 +1,6 @@
 #coursesVBox {
     -fx-alignment: center;
-    -fx-background-color: lightgray;
+    -fx-background-color: #ffffff;
     -fx-padding: 10px;
     -fx-spacing: 5px; /* Adjust the spacing between cards */
     -fx-min-height: 200px; /* Set the minimum height */
@@ -9,7 +9,7 @@
 
 #sessionsVBox {
     -fx-alignment: center;
-    -fx-background-color: lightgray;
+    -fx-background-color: #ffffff;
     -fx-padding: 10px;
     -fx-spacing: 5px; /* Adjust the spacing between cards */
     -fx-min-height: 200px; /* Set the minimum height */
@@ -84,6 +84,17 @@
 .button-container {
     -fx-spacing: 10px; /* Adjust spacing between components */
     -fx-padding: 10px;
+    -fx-background-color: rgba(155, 36, 36, 0.7); /* More transparent Dark Red */
+    -fx-background-radius: 10px; /* Slightly rounded corners */
+    -fx-text-fill: #fff; /* White text */
+    -fx-font-size: 14px;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-cursor: pointer;
 }
+
+.button-container:hover {
+    -fx-background-color: rgba(110, 7, 7, 0.7);
+}
+
 
 

@@ -245,20 +245,23 @@ public class quizController {
         }
     }
 
+    /*
     public void setQuizDuration(String duration) {
         int quizDurationMinutes = Integer.parseInt(duration);
         this.quizDurationSeconds = quizDurationMinutes * 60; // Convert minutes to seconds
         updateTimer(); // Update timer immediately when duration is set
     }
+    */
 
-    /*
+
+
     public void setQuizDuration(String duration) {
         int quizDurationSeconds = Integer.parseInt(duration);
         this.quizDurationSeconds = quizDurationSeconds; // Duration is already in seconds
         updateTimer(); // Update timer immediately when duration is set
     }
 
-     */
+
 
     public void startTimer() {
         timeline.play();

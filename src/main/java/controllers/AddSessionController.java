@@ -2,14 +2,20 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import models.Session;
 import models.Subject;
 import services.SessionService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -78,7 +84,7 @@ public class AddSessionController implements Initializable {
 
     private boolean isSessionNameUnique(String sessionName) {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/3a2", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/edu", "root", "");
 
             Statement statement = connection.createStatement();
 
@@ -112,5 +118,32 @@ public class AddSessionController implements Initializable {
             }
         }
         return true;
+    }
+
+    public void close()
+    {
+        System.exit(0);
+    }
+
+
+    public void minimize() {
+        Stage stage = (Stage)this.nmses.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    public void getback(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddSubject.fxml"));
+            Parent root = loader.load();
+
+            // Access the source node of the event
+            Node source = (Node) actionEvent.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
