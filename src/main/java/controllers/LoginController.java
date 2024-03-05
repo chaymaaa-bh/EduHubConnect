@@ -64,7 +64,7 @@ public class LoginController {
                     if (user.getRole().equals("admin")) {
                         // If user is admin, navigate to dashboard.fxml
                         System.out.println("Admin login successful");
-                        showAlert("Login Successful", "Welcome, Admin " + user.getFirst_name() + " " + user.getUser_id() + "!");
+                        showAlert("Login Successful", "Welcome, Admin " + user.getFirst_name() + " " + "!");
                         GlobalVariables.userId = user.getUser_id();
                         GlobalVariables.userName = user.getFirst_name();
                         GlobalVariables.userEmail = user.getEmail();
@@ -76,7 +76,7 @@ public class LoginController {
                         }
                     }  if (user.getRole().equals("scholar")) {
                         // If user is admin, navigate to dashboard.fxml
-                        showAlert("Login Successful", "Welcome,  " + user.getFirst_name() + " " + user.getUser_id() + "!");
+                        showAlert("Login Successful", "Welcome,  " + user.getFirst_name() + " " +  "!");
                         GlobalVariables.userId = user.getUser_id();
                         GlobalVariables.userName = user.getFirst_name();
                         GlobalVariables.userEmail = user.getEmail();
@@ -87,10 +87,7 @@ public class LoginController {
                             System.out.println("Error: " + e.getMessage());
                         }
                     }
-                    else {
-                        // For other roles, you can handle differently or restrict access
-                        showAlert("Invalid Role", "You do not have permissions to access the dashboard.");
-                    }
+
                 } else {
                     // Authentication failed, display error message
                     showAlert("Invalid Credentials", "The email or password is incorrect.");

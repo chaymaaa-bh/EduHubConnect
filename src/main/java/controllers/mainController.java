@@ -1081,7 +1081,6 @@ quizSearch();
     @FXML
     void switchForm(ActionEvent event) {
         if (event.getSource() == this.home_btn) {
-            this.home_form.setVisible(true);
             this.manageQuiz_form.setVisible(false);
             this.manageQuestion_form.setVisible(false);
             this.user_form.setVisible(false);
@@ -1089,7 +1088,6 @@ quizSearch();
 
 
         } else if (event.getSource() == this.manageQuiz_btn) {
-            this.home_form.setVisible(false);
             this.manageQuiz_form.setVisible(true);
             this.manageQuestion_form.setVisible(false);
             this.user_form.setVisible(false);
@@ -1098,7 +1096,6 @@ quizSearch();
             this.quizSearch();
             this.quizSubjectList();
         } else if (event.getSource() == this.manageQuestion_btn) {
-            this.home_form.setVisible(false);
             this.manageQuiz_form.setVisible(false);
             this.manageQuestion_form.setVisible(true);
             this.user_form.setVisible(false);
@@ -1108,13 +1105,11 @@ quizSearch();
             this.questionQuizIdList();
             this.questionDifficultyLevelList();
         } else if (event.getSource() == this.users_btn) {
-            this.home_form.setVisible(false);
             this.manageQuiz_form.setVisible(false);
             this.manageQuestion_form.setVisible(false);
             this.user_form.setVisible(true);
             this.modules_form.setVisible(false);
         } else if (event.getSource() == this.modules_btn) {
-        this.home_form.setVisible(false);
         this.manageQuiz_form.setVisible(false);
         this.manageQuestion_form.setVisible(false);
         this.user_form.setVisible(false);

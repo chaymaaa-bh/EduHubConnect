@@ -93,7 +93,7 @@
                                     <FontAwesomeIcon fill="WHITE" glyphName="FILE" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="users_btn" layoutX="13.0" layoutY="221.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Modules">
+                              <Button fx:id="users_btn" layoutX="13.0" layoutY="221.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="dashboardDesign.css" text="Users">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="GROUP" size="1.5em" />
                                  </graphic>
